@@ -37,7 +37,7 @@ import androidx.annotation.Nullable;
  * ================================================
  */
 public class CoverContainer extends FrameLayout {
-    private ImageView[] mImageViews = new ImageView[7];
+    private ImageView[] mImageViews = new ImageView[10];
     private int mImageViewHeight;
     private int mImageViewWidth;
     private getAllFrameTask mFrameTask;

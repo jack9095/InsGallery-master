@@ -633,7 +633,8 @@ public class PictureSelectorInstagramStyleActivity extends PictureBaseActivity i
                         mInstagramGallery.setViewVisibility(isEmpty ? View.VISIBLE : View.INVISIBLE);
                         boolean enabled = isEmpty || config.returnEmpty;
                         mTvPictureRight.setEnabled(enabled);
-                        mTvPictureRight.setTextColor(enabled ? config.style.pictureRightDefaultTextColor : ContextCompat.getColor(getContext(), R.color.picture_color_9B9B9D));
+//                        mTvPictureRight.setTextColor(enabled ? config.style.pictureRightDefaultTextColor : ContextCompat.getColor(getContext(), R.color.picture_color_9B9B9D));
+                        mTvPictureRight.setTextColor(ContextCompat.getColor(getContext(), R.color.picture_color_9B9B9D));
                     }
                 } else {
                     mTvEmpty.setCompoundDrawablesRelativeWithIntrinsicBounds

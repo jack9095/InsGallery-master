@@ -27,22 +27,31 @@ import com.luck.picture.lib.config.PictureSelectionConfig;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.instagram.AnimatorListenerImpl;
 import com.luck.picture.lib.instagram.InstagramPreviewContainer;
+import com.luck.picture.lib.instagram.InstagramViewPager;
+import com.luck.picture.lib.instagram.OnPageChangeListener;
+import com.luck.picture.lib.instagram.Page;
 import com.luck.picture.lib.tools.SdkVersionUtils;
 import com.luck.picture.lib.tools.ToastUtils;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 /**
+ * ================================================
+ * Created by JessYan on 2020/6/1 15:27
  * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
  * <a href="https://github.com/JessYanCoding">Follow me</a>
+ * ================================================
  */
-public class InstagramMediaSingleVideoContainer extends FrameLayout implements ProcessStateCallBack, LifecycleCallBack {
+public class InstagramMediaSingleVideoContainerCopy1 extends FrameLayout implements ProcessStateCallBack, LifecycleCallBack {
     private FrameLayout mTopContainer;
     private CoverContainer mCoverView;
     private VideoView mVideoView;
     private ImageView mThumbView;
     private ImageView mPlayButton;
+    private InstagramViewPager mInstagramViewPager;
     private MediaPlayer mMediaPlayer;
     private PictureSelectionConfig mConfig;
     private LocalMedia mMedia;
@@ -50,31 +59,39 @@ public class InstagramMediaSingleVideoContainer extends FrameLayout implements P
     private ObjectAnimator mPlayAnimator;
     private boolean isFrist;
     private boolean isVolumeOff;
+    private List<Page> mList;
     private int mCoverPlayPosition;
     private boolean isPlay;
     private boolean needPause;
     private boolean needSeekCover;
 
-    public InstagramMediaSingleVideoContainer(@NonNull Context context) {
+    public InstagramMediaSingleVideoContainerCopy1(@NonNull Context context) {
         super(context);
     }
 
-    public InstagramMediaSingleVideoContainer(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public InstagramMediaSingleVideoContainerCopy1(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public InstagramMediaSingleVideoContainer(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public InstagramMediaSingleVideoContainerCopy1(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
-    public InstagramMediaSingleVideoContainer(@NonNull Context context, PictureSelectionConfig config, LocalMedia media, boolean isAspectRatio) {
+    public void setData(PictureSelectionConfig config, LocalMedia media, boolean isAspectRatio) {
+        mConfig = config;
+        mMedia = media;
+        init(getContext(), config, media, isAspectRatio);
+    }
+
+
+    public InstagramMediaSingleVideoContainerCopy1(@NonNull Context context, PictureSelectionConfig config, LocalMedia media, boolean isAspectRatio) {
         super(context);
         mConfig = config;
         mMedia = media;
-        init(context, media, isAspectRatio);
+        init(context, config, media, isAspectRatio);
     }
 
-    private void init(Context context, LocalMedia media, boolean isAspectRatio) {
+    private void init(Context context, PictureSelectionConfig config, LocalMedia media, boolean isAspectRatio) {
         View rootView = inflate(context, R.layout.aaa_video,this);
         mTopContainer = rootView.findViewById(R.id.root_view);
         mVideoView = rootView.findViewById(R.id.video_view);
@@ -121,7 +138,7 @@ public class InstagramMediaSingleVideoContainer extends FrameLayout implements P
         mPlayButton.setOnClickListener(v -> startVideo(!isStart));
 
         mCoverView = new CoverContainer(context, media);
-        addView(mCoverView);
+                addView(mCoverView);
 
 //        mCoverView = rootView.findViewById(R.id.cover_view);
         mCoverView.getFrame(getContext(), media);
@@ -141,6 +158,55 @@ public class InstagramMediaSingleVideoContainer extends FrameLayout implements P
                     startVideo(false);
                 }
                 mPlayButton.setVisibility(GONE);
+            }
+        });
+
+        mList = new ArrayList<>();
+
+        if (config.instagramSelectionConfig.haveCover()) {
+            mList.add(new PageCover(config, media));
+            ((PageCover) mList.get(0)).setOnSeekListener(new CoverContainer.onSeekListener() {
+                @Override
+                public void onSeek(float percent) {
+                    if (!isFrist) {
+                        startVideo(true);
+                    }
+                    mVideoView.seekTo((int) (mMedia.getDuration() * percent));
+                }
+
+                @Override
+                public void onSeekEnd() {
+                    needPause = true;
+                    if (isStart && isPlay) {
+                        startVideo(false);
+                    }
+                    mPlayButton.setVisibility(GONE);
+                }
+            });
+        }
+
+        mInstagramViewPager = new InstagramViewPager(getContext(), mList, config);
+        mInstagramViewPager.displayTabLayout(config.instagramSelectionConfig.haveCover());
+        mInstagramViewPager.setScrollEnable(false);
+//        addView(mInstagramViewPager);
+        mInstagramViewPager.setOnPageChangeListener(new OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position == 0) {
+                    if (isStart) {
+                        startVideo(false);
+                    }
+                    mPlayButton.setVisibility(GONE);
+                    if (mCoverPlayPosition >= 0) {
+                        mVideoView.seekTo(mCoverPlayPosition);
+                        mCoverPlayPosition = -1;
+                    }
+                }
             }
         });
 
@@ -218,6 +284,7 @@ public class InstagramMediaSingleVideoContainer extends FrameLayout implements P
         int width = MeasureSpec.getSize(widthMeasureSpec);
         int height = MeasureSpec.getSize(heightMeasureSpec);
         mTopContainer.measure(MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY));
+//        mInstagramViewPager.measure(MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(height - width, MeasureSpec.EXACTLY));
         mCoverView.measure(MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(height - width, MeasureSpec.EXACTLY));
         setMeasuredDimension(width, height);
     }
@@ -229,6 +296,7 @@ public class InstagramMediaSingleVideoContainer extends FrameLayout implements P
         mTopContainer.layout(viewLeft, viewTop, viewLeft + mTopContainer.getMeasuredWidth(), viewTop + mTopContainer.getMeasuredHeight());
 
         viewTop = mTopContainer.getMeasuredHeight();
+//        mInstagramViewPager.layout(viewLeft, viewTop, viewLeft + mInstagramViewPager.getMeasuredWidth(), viewTop + mInstagramViewPager.getMeasuredHeight());
         mCoverView.layout(viewLeft, viewTop, viewLeft + mCoverView.getMeasuredWidth(), viewTop + mCoverView.getMeasuredHeight());
     }
 
@@ -279,6 +347,9 @@ public class InstagramMediaSingleVideoContainer extends FrameLayout implements P
         if (mVideoView.isPlaying()) {
             mVideoView.stopPlayback();
         }
+//        if (mInstagramViewPager != null) {
+//            mInstagramViewPager.onPause();
+//        }
         isPlay = false;
         needPause = false;
     }
@@ -289,6 +360,10 @@ public class InstagramMediaSingleVideoContainer extends FrameLayout implements P
             mMediaPlayer.release();
             mMediaPlayer = null;
         }
+//        if (mInstagramViewPager != null) {
+//            mInstagramViewPager.onDestroy();
+//            mInstagramViewPager = null;
+//        }
         mVideoView = null;
     }
 
@@ -336,14 +411,14 @@ public class InstagramMediaSingleVideoContainer extends FrameLayout implements P
             }
         }
 
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) mVideoView.getLayoutParams();
+        LayoutParams layoutParams = (LayoutParams) mVideoView.getLayoutParams();
         layoutParams.width = adjustWidth;
         layoutParams.height = adjustHeight;
         mVideoView.setLayoutParams(layoutParams);
     }
 
     public static class OnCompleteListenerImpl implements getFrameBitmapTask.OnCompleteListener {
-        private final WeakReference<ImageView> mImageViewWeakReference;
+        private WeakReference<ImageView> mImageViewWeakReference;
 
         public OnCompleteListenerImpl(ImageView imageView) {
             mImageViewWeakReference = new WeakReference<>(imageView);
