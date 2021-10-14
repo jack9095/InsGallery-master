@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.os.SystemClock;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -26,6 +27,7 @@ import java.lang.ref.WeakReference;
 import java.util.concurrent.CountDownLatch;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * ================================================
@@ -36,7 +38,7 @@ import androidx.annotation.NonNull;
  */
 public class CoverContainer extends FrameLayout {
     private ImageView[] mImageViews = new ImageView[7];
-    private final int mImageViewHeight;
+    private int mImageViewHeight;
     private int mImageViewWidth;
     private getAllFrameTask mFrameTask;
     private View mMaskView;
@@ -70,6 +72,18 @@ public class CoverContainer extends FrameLayout {
 
         mZoomView = new ZoomView(context);
         addView(mZoomView);
+    }
+
+    public CoverContainer(@NonNull Context context) {
+        super(context);
+    }
+
+    public CoverContainer(@NonNull Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    public CoverContainer(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
     }
 
     public void getFrame(@NonNull Context context, LocalMedia media) {

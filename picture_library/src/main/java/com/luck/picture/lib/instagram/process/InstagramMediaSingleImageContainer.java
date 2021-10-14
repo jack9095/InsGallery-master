@@ -68,13 +68,13 @@ public class InstagramMediaSingleImageContainer extends FrameLayout implements I
         mSelectionFilter = selectionFilter;
         setWillNotDraw(false);
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DARK) {
-            mPaint.setColor(Color.parseColor("#363636"));
-        } else if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DARK_BLUE) {
-            mPaint.setColor(Color.parseColor("#004561"));
-        } else {
+//        if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DARK) {
+//            mPaint.setColor(Color.parseColor("#363636"));
+//        } else if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DARK_BLUE) {
+//            mPaint.setColor(Color.parseColor("#004561"));
+//        } else {
             mPaint.setColor(Color.parseColor("#efefef"));
-        }
+//        }
 
         mGpuImage = new GPUImage(context);
 

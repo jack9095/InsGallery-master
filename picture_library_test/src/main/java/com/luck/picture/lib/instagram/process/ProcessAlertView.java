@@ -39,20 +39,20 @@ public class ProcessAlertView extends FrameLayout {
         super(context);
         setWillNotDraw(false);
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DEFAULT) {
-            mPaint.setColor(Color.parseColor("#dddddd"));
-        } else {
+//        if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DEFAULT) {
+//            mPaint.setColor(Color.parseColor("#dddddd"));
+//        } else {
             mPaint.setColor(Color.parseColor("#3f3f3f"));
-        }
+//        }
 
         Drawable background;
-        if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DARK) {
-            background = InstagramUtils.createRoundRectDrawable(ScreenUtils.dip2px(context, 4), Color.parseColor("#2c2c2c"));
-        } else if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DARK_BLUE) {
-            background = InstagramUtils.createRoundRectDrawable(ScreenUtils.dip2px(context, 4), Color.parseColor("#18222D"));
-        } else {
+//        if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DARK) {
+//            background = InstagramUtils.createRoundRectDrawable(ScreenUtils.dip2px(context, 4), Color.parseColor("#2c2c2c"));
+//        } else if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DARK_BLUE) {
+//            background = InstagramUtils.createRoundRectDrawable(ScreenUtils.dip2px(context, 4), Color.parseColor("#18222D"));
+//        } else {
             background = InstagramUtils.createRoundRectDrawable(ScreenUtils.dip2px(context, 4), Color.WHITE);
-        }
+//        }
 
         setBackground(background);
 
@@ -60,11 +60,11 @@ public class ProcessAlertView extends FrameLayout {
         mTitleView.setGravity(Gravity.CENTER);
         mTitleView.setTextSize(18);
         mTitleView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
-        if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DEFAULT) {
-            mTitleView.setTextColor(Color.BLACK);
-        } else {
+//        if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DEFAULT) {
+//            mTitleView.setTextColor(Color.BLACK);
+//        } else {
             mTitleView.setTextColor(Color.WHITE);
-        }
+//        }
         mTitleView.setText(R.string.discard_edits);
         addView(mTitleView);
 
@@ -79,11 +79,11 @@ public class ProcessAlertView extends FrameLayout {
         mAgreeView = new TextView(context);
         mAgreeView.setGravity(Gravity.CENTER);
         mAgreeView.setTextSize(17);
-         if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DARK_BLUE) {
-             mAgreeView.setTextColor(Color.parseColor("#2FA6FF"));
-         } else {
+//         if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DARK_BLUE) {
+//             mAgreeView.setTextColor(Color.parseColor("#2FA6FF"));
+//         } else {
              mAgreeView.setTextColor(ContextCompat.getColor(context, R.color.picture_color_1766FF));
-         }
+//         }
         mAgreeView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
         mAgreeView.setText(R.string.discard);
         addView(mAgreeView);
@@ -96,11 +96,11 @@ public class ProcessAlertView extends FrameLayout {
         mCancelView = new TextView(context);
         mCancelView.setGravity(Gravity.CENTER);
         mCancelView.setTextSize(17);
-        if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DEFAULT) {
-            mCancelView.setTextColor(Color.BLACK);
-        } else {
+//        if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DEFAULT) {
+//            mCancelView.setTextColor(Color.BLACK);
+//        } else {
             mCancelView.setTextColor(Color.WHITE);
-        }
+//        }
         mCancelView.setText(R.string.picture_cancel);
         addView(mCancelView);
         mCancelView.setOnClickListener(v -> {

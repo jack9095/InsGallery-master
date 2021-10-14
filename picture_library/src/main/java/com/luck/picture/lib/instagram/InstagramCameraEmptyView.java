@@ -28,13 +28,13 @@ public class InstagramCameraEmptyView extends FrameLayout {
     public InstagramCameraEmptyView(@NonNull Context context, PictureSelectionConfig config) {
         super(context);
 
-        if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DARK) {
-            setBackgroundColor(Color.parseColor("#1C1C1E"));
-        } else if(config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DARK_BLUE) {
-            setBackgroundColor(Color.parseColor("#213040"));
-        } else {
+//        if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DARK) {
+//            setBackgroundColor(Color.parseColor("#1C1C1E"));
+//        } else if(config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DARK_BLUE) {
+//            setBackgroundColor(Color.parseColor("#213040"));
+//        } else {
             setBackgroundColor(ContextCompat.getColor(context, R.color.picture_color_262626));
-        }
+//        }
 
         mTitleView = new TextView(context);
         mTitleView.setTextSize(20);

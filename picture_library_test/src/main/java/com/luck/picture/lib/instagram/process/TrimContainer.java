@@ -103,11 +103,11 @@ public class TrimContainer extends FrameLayout {
         mConfig = config;
         mMedia = media;
         mVideoView = videoView;
-        if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DEFAULT) {
-            mRecyclerView.setBackgroundColor(Color.parseColor("#333333"));
-        } else {
+//        if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DEFAULT) {
+//            mRecyclerView.setBackgroundColor(Color.parseColor("#333333"));
+//        } else {
             mRecyclerView.setBackgroundColor(Color.BLACK);
-        }
+//        }
         mRecyclerView.setOverScrollMode(OVER_SCROLL_NEVER);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.addItemDecoration(new InstagramFrameItemDecoration(mPadding));

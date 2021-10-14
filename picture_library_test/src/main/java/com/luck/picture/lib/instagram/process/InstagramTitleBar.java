@@ -74,10 +74,10 @@ public class InstagramTitleBar extends FrameLayout {
                 break;
         }
 
-        if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DEFAULT) {
+//        if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DEFAULT) {
             mLeftView.setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getContext(), R.color.picture_color_black), PorterDuff.Mode.MULTIPLY));
             mCenterView.setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getContext(), R.color.picture_color_black), PorterDuff.Mode.MULTIPLY));
-        }
+//        }
 
         mRightView = new TextView(context);
         mRightView.setPadding(ScreenUtils.dip2px(context, 10), 0, ScreenUtils.dip2px(context, 10), 0);
@@ -85,13 +85,13 @@ public class InstagramTitleBar extends FrameLayout {
         if (config.style.pictureRightDefaultTextColor != 0) {
             textColor = config.style.pictureRightDefaultTextColor;
         } else {
-            if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DARK) {
+//            if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DARK) {
+//                textColor = ContextCompat.getColor(context, R.color.picture_color_1766FF);
+//            } else if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DARK_BLUE) {
+//                textColor = Color.parseColor("#2FA6FF");
+//            } else {
                 textColor = ContextCompat.getColor(context, R.color.picture_color_1766FF);
-            } else if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DARK_BLUE) {
-                textColor = Color.parseColor("#2FA6FF");
-            } else {
-                textColor = ContextCompat.getColor(context, R.color.picture_color_1766FF);
-            }
+//            }
         }
         mRightView.setTextColor(textColor);
         mRightView.setTextSize(14);

@@ -19,6 +19,7 @@ import java.util.concurrent.CountDownLatch;
  * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
  * <a href="https://github.com/JessYanCoding">Follow me</a>
  * ================================================
+ * 裁剪
  */
 public class PageTrim implements Page {
     private PictureSelectionConfig mConfig;

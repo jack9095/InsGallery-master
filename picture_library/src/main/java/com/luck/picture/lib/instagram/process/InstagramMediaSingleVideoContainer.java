@@ -265,11 +265,11 @@ public class InstagramMediaSingleVideoContainer extends FrameLayout implements P
             view.setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getContext(), R.color.picture_color_1766FF), PorterDuff.Mode.MULTIPLY));
             ToastUtils.s(getContext(), getContext().getString(R.string.video_sound_off));
         } else {
-            if (mConfig.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DEFAULT) {
-                view.setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getContext(), R.color.picture_color_black), PorterDuff.Mode.MULTIPLY));
-            } else {
+//            if (mConfig.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DEFAULT) {
+//                view.setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getContext(), R.color.picture_color_black), PorterDuff.Mode.MULTIPLY));
+//            } else {
                 view.setColorFilter(new PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY));
-            }
+//            }
             ToastUtils.s(getContext(), getContext().getString(R.string.video_sound_on));
         }
         if (mMediaPlayer != null) {

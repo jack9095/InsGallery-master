@@ -321,10 +321,10 @@ public class PictureSelectorInstagramStyleActivity extends PictureBaseActivity i
         mTvEmpty = mInstagramGallery.getEmptyView();
         isNumComplete(numComplete);
 
-        if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DEFAULT) {
+//        if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DEFAULT) {
             mIvPictureLeftBack.setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getContext(), R.color.picture_color_black), PorterDuff.Mode.MULTIPLY));
             mIvArrow.setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getContext(), R.color.picture_color_black), PorterDuff.Mode.MULTIPLY));
-        }
+//        }
 
         if (config.isAutomaticTitleRecyclerTop) {
             titleViewBg.setOnClickListener(this);

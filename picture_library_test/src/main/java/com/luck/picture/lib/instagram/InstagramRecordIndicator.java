@@ -35,11 +35,11 @@ public class InstagramRecordIndicator extends FrameLayout {
         mTimeView = new TextView(context);
         mTimeView.setTextSize(14);
         mTimeView.setGravity(Gravity.CENTER_VERTICAL);
-        if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DARK || config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DARK_BLUE) {
-            mTimeView.setTextColor(Color.WHITE);
-        } else {
+//        if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DARK || config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DARK_BLUE) {
+//            mTimeView.setTextColor(Color.WHITE);
+//        } else {
             mTimeView.setTextColor(Color.BLACK);
-        }
+//        }
         addView(mTimeView);
 
         mIndicatorView = new IndicatorView(context, ScreenUtils.dip2px(context, 4));

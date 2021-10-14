@@ -66,11 +66,11 @@ public class FilterItemView extends FrameLayout {
 
     public void selection(boolean isSelection) {
         if (isSelection) {
-            if (mConfig.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DEFAULT) {
-                mTitleView.setTextColor(Color.parseColor("#262626"));
-            } else {
+//            if (mConfig.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DEFAULT) {
+//                mTitleView.setTextColor(Color.parseColor("#262626"));
+//            } else {
                 mTitleView.setTextColor(Color.parseColor("#fafafa"));
-            }
+//            }
             setTranslationY(-ScreenUtils.dip2px(getContext(), 10));
         } else {
             setTranslationY(0);
