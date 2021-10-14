@@ -1,0 +1,4 @@
+//include ':app', ':picture_library', ':ucrop'
+include ':test'
+include ':picture_library_test'
+include ':ucrop_test'
