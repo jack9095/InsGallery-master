@@ -3,6 +3,11 @@ package com.kuanquan.picture_test.util;
 import android.os.Build;
 import android.text.TextUtils;
 
+import androidx.annotation.Nullable;
+
+import java.io.Closeable;
+import java.io.IOException;
+
 /**
  * @author：luck
  * @date：2019-07-17 15:12
@@ -29,6 +34,16 @@ public class SdkVersionUtils {
             return false;
         }
         return url.startsWith("content://");
+    }
+
+    public static void close(@Nullable Closeable c) {
+        if (c != null && c instanceof Closeable) { // java.lang.IncompatibleClassChangeError: interface not implemented
+            try {
+                c.close();
+            } catch (IOException e) {
+                // silence
+            }
+        }
     }
 
 }

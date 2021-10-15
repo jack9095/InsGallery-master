@@ -29,17 +29,10 @@ import java.util.List;
  */
 public class InstagramMediaProcessActivity extends AppCompatActivity {
 
-    // new  start
     protected View container;
     protected PictureSelectionConfig mPictureSelectionConfig;
-    // new  end
 
     public static final String EXTRA_ASPECT_RATIO = "extra_aspect_ratio";
-    public static final String EXTRA_SINGLE_IMAGE_FILTER = "extra_single_image_filter";
-    public static final String EXTRA_SINGLE_IMAGE_SELECTION_FILTER = "extra_single_image_selection_filter";
-
-    public static final int REQUEST_SINGLE_IMAGE_PROCESS = 339;
-    public static final int REQUEST_MULTI_IMAGE_PROCESS = 440;
     public static final int REQUEST_SINGLE_VIDEO_PROCESS = 441;
 
     public static final int RESULT_MEDIA_PROCESS_CANCELED = 501;
@@ -191,6 +184,4 @@ public class InstagramMediaProcessActivity extends AppCompatActivity {
         activity.overridePendingTransition(0, 0);
     }
 
-    public void showLoadingView() {
-    }
 }

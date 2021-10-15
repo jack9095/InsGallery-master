@@ -23,7 +23,7 @@ import com.kuanquan.picture_test.task.getAllFrameTask;
 import com.kuanquan.picture_test.task.getFrameBitmapTask;
 import com.kuanquan.picture_test.thread.PictureThreadUtils;
 import com.kuanquan.picture_test.util.ScreenUtils;
-import com.yalantis.ucrop.util.BitmapLoadUtils;
+import com.kuanquan.picture_test.util.SdkVersionUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -220,7 +220,7 @@ public class CoverContainer extends FrameLayout {
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } finally {
-                    BitmapLoadUtils.close(outputStream);
+                    SdkVersionUtils.close(outputStream);
                 }
                 return null;
             }
