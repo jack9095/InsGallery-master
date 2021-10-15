@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(String str){
+    public void onEvent(String str) {
         Glide.with(mImageView)
                 .load(str)
                 .into(mImageView);
@@ -54,11 +54,7 @@ public class MainActivity extends AppCompatActivity {
         localMedia.setPath("/storage/emulated/0/DCIM/Camera/VID_20210929_18262509.mp4");
         localMedia.setRealPath("/storage/emulated/0/DCIM/Camera/VID_20210929_18262509.mp4");
         result.add(localMedia);
-        Bundle bundle = new Bundle();
-        bundle.putBoolean(InstagramMediaProcessActivity.EXTRA_ASPECT_RATIO, false);
 
-        InstagramMediaProcessActivity.launchActivity(this, result, bundle,
-                InstagramMediaProcessActivity.REQUEST_SINGLE_VIDEO_PROCESS);
-
+        InstagramMediaProcessActivity.launchActivity(this, result);
     }
 }

@@ -23,7 +23,7 @@ import com.kuanquan.picture_test.R;
 import com.kuanquan.picture_test.callback.LifecycleCallBack;
 import com.kuanquan.picture_test.callback.ProcessStateCallBack;
 import com.kuanquan.picture_test.model.LocalMedia;
-import com.kuanquan.picture_test.task.getFrameBitmapTask;
+import com.kuanquan.picture_test.task.GetFrameBitmapTask;
 import com.kuanquan.picture_test.util.SdkVersionUtils;
 import com.kuanquan.picture_test.util.ToastUtils;
 
@@ -121,7 +121,7 @@ public class InstagramMediaSingleVideoContainer extends FrameLayout implements P
             }
         });
 
-        new getFrameBitmapTask(context, media, isAspectRatio, -1, new OnCompleteListenerImpl(mThumbView)).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        new GetFrameBitmapTask(context, media, isAspectRatio, -1, new OnCompleteListenerImpl(mThumbView)).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     /**
@@ -193,7 +193,6 @@ public class InstagramMediaSingleVideoContainer extends FrameLayout implements P
 
     @Override
     public void onBack(InstagramMediaProcessActivity activity) {
-        activity.setResult(InstagramMediaProcessActivity.RESULT_MEDIA_PROCESS_CANCELED);
         activity.finish();
     }
 
@@ -304,7 +303,7 @@ public class InstagramMediaSingleVideoContainer extends FrameLayout implements P
         mVideoView.setLayoutParams(layoutParams);
     }
 
-    public static class OnCompleteListenerImpl implements getFrameBitmapTask.OnCompleteListener {
+    public static class OnCompleteListenerImpl implements GetFrameBitmapTask.OnCompleteListener {
         private final WeakReference<ImageView> mImageViewWeakReference;
 
         public OnCompleteListenerImpl(ImageView imageView) {

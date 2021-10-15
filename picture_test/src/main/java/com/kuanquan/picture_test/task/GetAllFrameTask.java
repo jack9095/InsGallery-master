@@ -19,7 +19,7 @@ import java.lang.ref.WeakReference;
  * <a href="https://github.com/JessYanCoding">Follow me</a>
  * ================================================
  */
-public class getAllFrameTask extends AsyncTask<Void, Void, Void> {
+public class GetAllFrameTask extends AsyncTask<Void, Void, Void> {
     private WeakReference<Context> mContextWeakReference;
     private LocalMedia mMedia;
     private int mTotalThumbsCount;
@@ -28,7 +28,7 @@ public class getAllFrameTask extends AsyncTask<Void, Void, Void> {
     private OnSingleBitmapListener mOnSingleBitmapListener;
     private boolean isStop;
 
-    public getAllFrameTask(Context context, LocalMedia media, int totalThumbsCount, long startPosition,
+    public GetAllFrameTask(Context context, LocalMedia media, int totalThumbsCount, long startPosition,
                            long endPosition, OnSingleBitmapListener onSingleBitmapListener) {
         mContextWeakReference = new WeakReference<>(context);
         mMedia = media;

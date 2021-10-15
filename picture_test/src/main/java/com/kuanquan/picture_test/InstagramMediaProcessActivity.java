@@ -17,7 +17,7 @@ import com.kuanquan.picture_test.callback.ProcessStateCallBack;
 import com.kuanquan.picture_test.config.PictureConfig;
 import com.kuanquan.picture_test.model.LocalMedia;
 import com.kuanquan.picture_test.widget.InstagramMediaSingleVideoContainer;
-import com.kuanquan.picture_test.widget.InstagramTitleBar;
+import com.kuanquan.picture_test.util.InstagramTitleBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,15 +29,8 @@ import java.util.List;
 public class InstagramMediaProcessActivity extends AppCompatActivity {
 
     protected View container;
-
-    public static final String EXTRA_ASPECT_RATIO = "extra_aspect_ratio";
-    public static final int REQUEST_SINGLE_VIDEO_PROCESS = 441;
-
-    public static final int RESULT_MEDIA_PROCESS_CANCELED = 501;
-
     private List<LocalMedia> mSelectMedia;
     private InstagramTitleBar mTitleBar;
-    private boolean isAspectRatio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +41,6 @@ public class InstagramMediaProcessActivity extends AppCompatActivity {
 
         if (mSelectMedia == null || mSelectMedia.isEmpty()) {
             finish();
-        }
-
-        if (getIntent() != null) {
-            isAspectRatio = getIntent().getBooleanExtra(EXTRA_ASPECT_RATIO, false);
         }
 
         initView();
@@ -81,10 +70,8 @@ public class InstagramMediaProcessActivity extends AppCompatActivity {
         container.setBackgroundColor(Color.parseColor("#000000"));
         setContentView(contentView);
 
-        if (getIntent() != null) {
-            isAspectRatio = getIntent().getBooleanExtra(EXTRA_ASPECT_RATIO, false);
-        }
         // 视频控件
+        boolean isAspectRatio = false;
         InstagramMediaSingleVideoContainer singleVideoContainer =
                 new InstagramMediaSingleVideoContainer(this, mSelectMedia.get(0), isAspectRatio);
         contentView.addView(singleVideoContainer,
@@ -96,7 +83,6 @@ public class InstagramMediaProcessActivity extends AppCompatActivity {
         mTitleBar.setClickListener(new InstagramTitleBar.OnTitleBarItemOnClickListener() {
             @Override
             public void onLeftViewClick() {
-                setResult(RESULT_MEDIA_PROCESS_CANCELED);
                 finish();
             }
 
@@ -150,14 +136,11 @@ public class InstagramMediaProcessActivity extends AppCompatActivity {
         }
     }
 
-    public static void launchActivity(Activity activity, List<LocalMedia> images, Bundle extras, int requestCode) {
+    public static void launchActivity(Activity activity, List<LocalMedia> images) {
         Intent intent = new Intent(activity.getApplicationContext(), InstagramMediaProcessActivity.class);
         intent.putParcelableArrayListExtra(PictureConfig.EXTRA_SELECT_LIST,
                 (ArrayList<? extends Parcelable>) images);
-        if (extras != null) {
-            intent.putExtras(extras);
-        }
-        activity.startActivityForResult(intent, requestCode);
+        activity.startActivity(intent);
         activity.overridePendingTransition(0, 0);
     }
 

@@ -35,8 +35,8 @@ public class ZoomView extends AppCompatImageView {
             canvas.drawBitmap(mBitmap, 0, 0, mPaint);
         }
 
-//        float right = getMeasuredWidth()- ScreenUtils.dip2px(getContext(), 1);
-        float right = getMeasuredWidth() >> 1;
+        float right = getMeasuredWidth()- ScreenUtils.dip2px(getContext(), 1);
+//        float right = getMeasuredWidth() >> 1;
         canvas.drawRect(
                 ScreenUtils.dip2px(getContext(), 1),
                 ScreenUtils.dip2px(getContext(), 1),

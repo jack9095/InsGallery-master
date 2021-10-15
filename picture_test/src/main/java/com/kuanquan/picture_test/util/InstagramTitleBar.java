@@ -1,4 +1,4 @@
-package com.kuanquan.picture_test.widget;
+package com.kuanquan.picture_test.util;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
@@ -15,7 +15,6 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import com.kuanquan.picture_test.R;
-import com.kuanquan.picture_test.util.ScreenUtils;
 
 /**
  * 标题栏

@@ -1,5 +1,6 @@
 package com.kuanquan.picture_test.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
@@ -19,8 +20,8 @@ import androidx.annotation.Nullable;
 
 import com.kuanquan.picture_test.R;
 import com.kuanquan.picture_test.model.LocalMedia;
-import com.kuanquan.picture_test.task.getAllFrameTask;
-import com.kuanquan.picture_test.task.getFrameBitmapTask;
+import com.kuanquan.picture_test.task.GetAllFrameTask;
+import com.kuanquan.picture_test.task.GetFrameBitmapTask;
 import com.kuanquan.picture_test.thread.PictureThreadUtils;
 import com.kuanquan.picture_test.util.ScreenUtils;
 import com.kuanquan.picture_test.util.SdkVersionUtils;
@@ -34,46 +35,42 @@ import java.lang.ref.WeakReference;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * ================================================
- * Created by JessYan on 2020/7/8 16:32
- * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
- * <a href="https://github.com/JessYanCoding">Follow me</a>
- * ================================================
+ * 视频封面选择器
  */
 public class CoverContainer extends FrameLayout {
-    private final ImageView[] mImageViews = new ImageView[10];
+    private final ImageView[] mImageViews = new ImageView[10]; // 把视频几等份的图片集合，这里是 10等份
     private int mImageViewHeight;
     private int mImageViewWidth;
-    private getAllFrameTask mFrameTask;
-    private View mMaskView;
-    private ZoomView mZoomView;
+    private GetAllFrameTask mFrameTask;
+    private View mMaskView;  // 未被选择的图片上面的蒙层View，百分之70 的透明度
+    private ZoomView mZoomView; // 选中图片上面的蒙板View,可以跟着手指滑动
     private int startedTrackingX;
     private int startedTrackingY;
     int startClickX;
     int startClickY;
     private float scrollHorizontalPosition;
     private onSeekListener mOnSeekListener;
-    private LocalMedia mLocalMedia;
+    private LocalMedia mLocalMedia; // 传进来的数据，包含视频的路径
     private long mChangeTime;
-    private getFrameBitmapTask mGetFrameBitmapTask;
+    private GetFrameBitmapTask mGetFrameBitmapTask; // 解析视频帧图片的任务
     private float mCurrentPercent;
 
     public CoverContainer(@NonNull Context context, LocalMedia media) {
         super(context);
         mLocalMedia = media;
         mImageViewHeight = ScreenUtils.dip2px(getContext(), 60);
-
+        // 创建展示图片的 View ,并添加到容器中，这里会创建10个出来
         for (int i = 0; i < mImageViews.length; i++) {
             mImageViews[i] = new ImageView(context);
             mImageViews[i].setScaleType(ImageView.ScaleType.CENTER_CROP);
             mImageViews[i].setImageResource((R.drawable.picture_image_placeholder));
             addView(mImageViews[i]);
         }
-
+        // 创建未被选择的图片上面的蒙层View，百分之70 的透明度
         mMaskView = new View(context);
         mMaskView.setBackgroundColor(0x77FFFFFF);
         addView(mMaskView);
-
+        // 选中图片上面的蒙板View,可以跟着手指滑动
         mZoomView = new ZoomView(context);
         addView(mZoomView);
     }
@@ -91,10 +88,10 @@ public class CoverContainer extends FrameLayout {
     }
 
     public void getFrame(@NonNull Context context, LocalMedia media) {
-        mGetFrameBitmapTask = new getFrameBitmapTask(context, media, false, -1, mImageViewHeight, mImageViewHeight, new OnCompleteListenerImpl(mZoomView));
+        mGetFrameBitmapTask = new GetFrameBitmapTask(context, media, false, -1, mImageViewHeight, mImageViewHeight, new OnCompleteListenerImpl(mZoomView));
         mGetFrameBitmapTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
-        mFrameTask = new getAllFrameTask(context, media, mImageViews.length, 0, (int) media.getDuration(), new OnSingleBitmapListenerImpl(this));
+        mFrameTask = new GetAllFrameTask(context, media, mImageViews.length, 0, (int) media.getDuration(), new OnSingleBitmapListenerImpl(this));
         mFrameTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
@@ -118,6 +115,7 @@ public class CoverContainer extends FrameLayout {
         int viewTop = (getMeasuredHeight() - mImageViewHeight) / 2;
         int viewLeft;
 
+        // 布局，使控件距离左右各20dp
         for (int i = 0; i < mImageViews.length; i++) {
             viewLeft = i * (mImageViewWidth + 1) + ScreenUtils.dip2px(getContext(), 20);
             mImageViews[i].layout(viewLeft, viewTop, viewLeft + mImageViews[i].getMeasuredWidth(), viewTop + mImageViews[i].getMeasuredHeight());
@@ -129,6 +127,7 @@ public class CoverContainer extends FrameLayout {
         mZoomView.layout(viewLeft, viewTop, viewLeft + mZoomView.getMeasuredWidth(), viewTop + mZoomView.getMeasuredHeight());
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         Rect rect = new Rect();
@@ -182,7 +181,7 @@ public class CoverContainer extends FrameLayout {
             mChangeTime = SystemClock.uptimeMillis();
 
             long time = Math.round(mLocalMedia.getDuration() * mCurrentPercent * 1000);
-            mGetFrameBitmapTask = new getFrameBitmapTask(getContext(), mLocalMedia, false, time, mImageViewHeight, mImageViewHeight, new OnCompleteListenerImpl(mZoomView));
+            mGetFrameBitmapTask = new GetFrameBitmapTask(getContext(), mLocalMedia, false, time, mImageViewHeight, mImageViewHeight, new OnCompleteListenerImpl(mZoomView));
             mGetFrameBitmapTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         }
 
@@ -199,7 +198,7 @@ public class CoverContainer extends FrameLayout {
         } else {
             time = -1;
         }
-        new getFrameBitmapTask(getContext(), mLocalMedia, false, time,
+        new GetFrameBitmapTask(getContext(), mLocalMedia, false, time,
                 bitmap -> PictureThreadUtils.executeByIo(new PictureThreadUtils.SimpleTask<File>() {
 
             @Override
@@ -239,10 +238,6 @@ public class CoverContainer extends FrameLayout {
         })).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
-    public void onPause() {
-
-    }
-
     public void onDestroy() {
         if (mFrameTask != null) {
             mFrameTask.setStop(true);
@@ -256,7 +251,7 @@ public class CoverContainer extends FrameLayout {
 
     }
 
-    public static class OnSingleBitmapListenerImpl implements getAllFrameTask.OnSingleBitmapListener {
+    public static class OnSingleBitmapListenerImpl implements GetAllFrameTask.OnSingleBitmapListener {
         private WeakReference<CoverContainer> mContainerWeakReference;
         private int index;
 
@@ -293,7 +288,7 @@ public class CoverContainer extends FrameLayout {
         }
     }
 
-    public static class OnCompleteListenerImpl implements getFrameBitmapTask.OnCompleteListener {
+    public static class OnCompleteListenerImpl implements GetFrameBitmapTask.OnCompleteListener {
         private WeakReference<ZoomView> mViewWeakReference;
 
         public OnCompleteListenerImpl(ZoomView view) {

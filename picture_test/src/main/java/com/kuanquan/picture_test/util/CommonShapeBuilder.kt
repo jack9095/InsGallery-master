@@ -1,4 +1,4 @@
-package com.kuanquan.picture_test.widget
+package com.kuanquan.picture_test.util
 
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable

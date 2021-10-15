@@ -13,14 +13,7 @@ import com.kuanquan.picture_test.util.SdkVersionUtils;
 import java.io.File;
 import java.lang.ref.WeakReference;
 
-/**
- * ================================================
- * Created by JessYan on 2020/6/22 16:10
- * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
- * <a href="https://github.com/JessYanCoding">Follow me</a>
- * ================================================
- */
-public class getFrameBitmapTask extends AsyncTask<Void, Void, Bitmap> {
+public class GetFrameBitmapTask extends AsyncTask<Void, Void, Bitmap> {
     private WeakReference<Context> mContextWeakReference;
     private LocalMedia mMedia;
     private OnCompleteListener mOnCompleteListener;
@@ -29,7 +22,7 @@ public class getFrameBitmapTask extends AsyncTask<Void, Void, Bitmap> {
     private int mCropWidth;
     private int mCropHeight;
 
-    public getFrameBitmapTask(Context context, LocalMedia media, boolean isAspectRatio, long time, OnCompleteListener onCompleteListener) {
+    public GetFrameBitmapTask(Context context, LocalMedia media, boolean isAspectRatio, long time, OnCompleteListener onCompleteListener) {
         mContextWeakReference = new WeakReference<>(context);
         mMedia = media;
         this.isAspectRatio = isAspectRatio;
@@ -37,7 +30,7 @@ public class getFrameBitmapTask extends AsyncTask<Void, Void, Bitmap> {
         mOnCompleteListener = onCompleteListener;
     }
 
-    public getFrameBitmapTask(Context context, LocalMedia media, boolean isAspectRatio, long time, int cropWidth, int cropHeight, OnCompleteListener onCompleteListener) {
+    public GetFrameBitmapTask(Context context, LocalMedia media, boolean isAspectRatio, long time, int cropWidth, int cropHeight, OnCompleteListener onCompleteListener) {
         this(context, media, isAspectRatio, time, onCompleteListener);
         mCropWidth = cropWidth;
         mCropHeight = cropHeight;

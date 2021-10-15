@@ -34,9 +34,14 @@
     <list default="true" id="182c9e1a-233f-43fd-9e95-66e28ae27193" name="Default Changelist" comment="test 模型">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/InstagramMediaProcessActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/InstagramMediaProcessActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/PictureSelectionConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/config/PictureConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/config/PictureConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/model/LocalMedia.java" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/model/LocalMedia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/task/getAllFrameTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/task/GetAllFrameTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/task/getFrameBitmapTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/task/GetFrameBitmapTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/widget/CommonShapeBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/util/CommonShapeBuilder.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/widget/CoverContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/widget/CoverContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/widget/InstagramMediaSingleVideoContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/widget/InstagramMediaSingleVideoContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/widget/InstagramTitleBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/util/InstagramTitleBar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/widget/ZoomView.java" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/widget/ZoomView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/picture_test/src/main/res/drawable/picture_image_placeholder.xml" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/res/drawable/picture_image_placeholder.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/src/main/java/com/kuanquan/test/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/src/main/java/com/kuanquan/test/MainActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -101,6 +106,7 @@
     <property name="android-custom-view/Users/admin/Downloads/InsGallery-master/picture_library_test/src/main/java/com/luck/picture/lib/instagram/process/InstagramTitleBar.java_SELECTED" value="InstagramTitleBar" />
     <property name="android-custom-view/Users/admin/Downloads/InsGallery-master/picture_test/src/main/java/com/kuanquan/picture_test/InstagramMediaSingleVideoContainer.java_SELECTED" value="InstagramMediaSingleVideoContainer" />
     <property name="android-custom-view/Users/admin/Downloads/InsGallery-master/picture_test/src/main/java/com/kuanquan/picture_test/callback/InstagramTitleBar.java_SELECTED" value="InstagramTitleBar" />
+    <property name="android-custom-view/Users/admin/Downloads/InsGallery-master/picture_test/src/main/java/com/kuanquan/picture_test/util/InstagramTitleBar.java_SELECTED" value="InstagramTitleBar" />
     <property name="android-custom-view/Users/admin/Downloads/InsGallery-master/picture_test/src/main/java/com/kuanquan/picture_test/widget/CoverContainer.java_SELECTED" value="CoverContainer" />
     <property name="android-custom-view/Users/admin/Downloads/InsGallery-master/picture_test/src/main/java/com/kuanquan/picture_test/widget/InstagramTitleBar.java_SELECTED" value="InstagramTitleBar" />
     <property name="android-custom-view/Users/admin/Library/Android/sdk/sources/android-29/android/view/View.java_SELECTED" value="View" />
@@ -120,6 +126,9 @@
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/test/src/main/java/com/kuanquan/test/test" />
+    </key>
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.kuanquan.picture_test.util" />
     </key>
     <key name="android.template.1633361495">
       <recent name="com.luck.pictureselector" />
@@ -315,7 +324,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634289190651</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="test 模型">
+      <created>1634290255944</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1634290255944</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -348,6 +364,10 @@
       <screen x="0" y="25" width="1440" height="802" />
     </state>
     <state x="458" y="177" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1440.802@0.25.1440.802" timestamp="1634288868276" />
+    <state x="424" y="221" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1634290320778">
+      <screen x="0" y="25" width="1440" height="802" />
+    </state>
+    <state x="424" y="221" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.25.1440.802@0.25.1440.802" timestamp="1634290320778" />
     <state x="520" y="207" key="AndroidCreateXmlResourceDialog" timestamp="1634284539213">
       <screen x="0" y="25" width="1440" height="802" />
     </state>
@@ -404,10 +424,10 @@
       <screen x="0" y="25" width="1440" height="802" />
     </state>
     <state width="699" height="536" key="SwitcherDM/0.25.1440.802@0.25.1440.802" timestamp="1634265532914" />
-    <state x="320" y="163" key="Vcs.Push.Dialog.v2" timestamp="1634289192364">
+    <state x="320" y="163" key="Vcs.Push.Dialog.v2" timestamp="1634290257623">
       <screen x="0" y="25" width="1440" height="802" />
     </state>
-    <state x="320" y="163" key="Vcs.Push.Dialog.v2/0.25.1440.802@0.25.1440.802" timestamp="1634289192364" />
+    <state x="320" y="163" key="Vcs.Push.Dialog.v2/0.25.1440.802@0.25.1440.802" timestamp="1634290257623" />
     <state x="421" y="181" width="756" height="518" key="find.popup" timestamp="1634287289835">
       <screen x="0" y="25" width="1440" height="802" />
     </state>
