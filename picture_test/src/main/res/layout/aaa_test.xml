@@ -4,16 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.luck.picture.lib.instagram.process.InstagramTitleBar
-        android:id="@+id/instagram_titleBar"
-        android:layout_width="match_parent"
-        android:layout_height="46dp"/>
+<!--    <com.luck.picture.lib.instagram.process.InstagramTitleBar-->
+<!--        android:id="@+id/instagram_titleBar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="46dp"/>-->
 
-    <!-- 单视频 -->
-    <com.luck.picture.lib.instagram.process.InstagramMediaSingleVideoContainer
-        android:id="@+id/video_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+<!--    &lt;!&ndash; 单视频 &ndash;&gt;-->
+<!--    <com.luck.picture.lib.instagram.process.InstagramMediaSingleVideoContainer-->
+<!--        android:id="@+id/video_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"/>-->
 
     <!-- 单图片 -->
 <!--    <com.luck.picture.lib.instagram.process.InstagramMediaSingleImageContainer-->

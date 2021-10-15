@@ -8,7 +8,6 @@ import android.os.Parcelable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,8 +40,6 @@ public class InstagramMediaProcessActivity extends AppCompatActivity {
     private InstagramTitleBar mTitleBar;
     private boolean isAspectRatio;
 
-    public enum MediaType {SINGLE_VIDEO}
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,8 +66,6 @@ public class InstagramMediaProcessActivity extends AppCompatActivity {
         }
 
         initView();
-        container.setBackgroundColor(Color.parseColor("#ffffff"));
-        mTitleBar.setBackgroundColor(Color.parseColor("#ffffff"));
     }
 
     private void initView() {
@@ -94,6 +89,7 @@ public class InstagramMediaProcessActivity extends AppCompatActivity {
             }
         };
         container = contentView;
+        container.setBackgroundColor(Color.parseColor("#000000"));
         setContentView(contentView);
 
         if (getIntent() != null) {
@@ -105,7 +101,7 @@ public class InstagramMediaProcessActivity extends AppCompatActivity {
         contentView.addView(singleVideoContainer,
                 FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
 
-        mTitleBar = new InstagramTitleBar(this, mPictureSelectionConfig, MediaType.SINGLE_VIDEO);
+        mTitleBar = new InstagramTitleBar(this);
         contentView.addView(mTitleBar);
 
         mTitleBar.setClickListener(new InstagramTitleBar.OnTitleBarItemOnClickListener() {
@@ -113,13 +109,6 @@ public class InstagramMediaProcessActivity extends AppCompatActivity {
             public void onLeftViewClick() {
                 setResult(RESULT_MEDIA_PROCESS_CANCELED);
                 finish();
-            }
-
-            @Override
-            public void onCenterViewClick(ImageView view) {
-                if (contentView.getChildAt(0) instanceof ProcessStateCallBack) {
-                    ((ProcessStateCallBack)contentView.getChildAt(0)).onCenterFeature(InstagramMediaProcessActivity.this, view);
-                }
             }
 
             @Override

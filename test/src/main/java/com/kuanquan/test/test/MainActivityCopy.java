@@ -1,4 +1,4 @@
-package com.kuanquan.test;
+package com.kuanquan.test.test;
 
 import android.content.Context;
 import android.content.pm.ActivityInfo;
@@ -15,11 +15,15 @@ import com.kuanquan.picture_test.config.InstagramSelectionConfig;
 import com.kuanquan.picture_test.config.PictureConfig;
 import com.kuanquan.picture_test.config.PictureParameterStyle;
 import com.kuanquan.picture_test.model.LocalMedia;
+import com.kuanquan.test.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+//import instagram.InsGallery;
+//import static instagram.InsGallery.THEME_STYLE_DEFAULT;
+
+public class MainActivityCopy extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
+//        InsGallery.openGallery(
+//                MainActivity.this,
+//                GlideEngine.createGlideEngine(),
+//                GlideCacheEngine.createCacheEngine(),
+//                new ArrayList<LocalMedia>());
+
         List<LocalMedia> result = new ArrayList<>();
         LocalMedia localMedia = new LocalMedia();
         localMedia.setFileName("VID_20210929_18262509.mp4");
@@ -53,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         config.aspect_ratio_y = 1;
         config.enableCrop = true;
         config.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+//        config.style = InsGallery.createInstagramStyle(this);
         config.style = createInstagramStyle(this);
         config.instagramSelectionConfig = InstagramSelectionConfig.createConfig().setCurrentTheme(0);
 

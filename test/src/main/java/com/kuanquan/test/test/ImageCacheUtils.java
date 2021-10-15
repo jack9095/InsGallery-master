@@ -1,4 +1,4 @@
-package com.kuanquan.test;
+package com.kuanquan.test.test;
 
 import android.content.Context;
 

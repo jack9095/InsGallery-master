@@ -8,33 +8,25 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
-import com.kuanquan.picture_test.InstagramMediaProcessActivity;
-import com.kuanquan.picture_test.PictureSelectionConfig;
 import com.kuanquan.picture_test.R;
 import com.kuanquan.picture_test.util.ScreenUtils;
 
 /**
- * ================================================
- * Created by JessYan on 2020/5/29 11:51
- * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
- * <a href="https://github.com/JessYanCoding">Follow me</a>
- * ================================================
+ * 标题栏
  */
 public class InstagramTitleBar extends FrameLayout {
     private ImageView mLeftView;
-    private ImageView mCenterView;
+    private TextView mCenterView;
     private TextView mRightView;
     private OnTitleBarItemOnClickListener mClickListener;
-
-    public InstagramTitleBar(@NonNull Context context) {
-        super(context);
-    }
 
     public InstagramTitleBar(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -44,8 +36,9 @@ public class InstagramTitleBar extends FrameLayout {
         super(context, attrs, defStyleAttr);
     }
 
-    public InstagramTitleBar(@NonNull Context context, PictureSelectionConfig config, InstagramMediaProcessActivity.MediaType mediaType) {
+    public InstagramTitleBar(@NonNull Context context) {
         super(context);
+        setBackgroundColor(ContextCompat.getColor(context, R.color.picture_color_black));
         mLeftView = new ImageView(context);
         mLeftView.setImageResource(R.drawable.discover_return);
         mLeftView.setPadding(ScreenUtils.dip2px(context, 15), 0, ScreenUtils.dip2px(context, 15), 0);
@@ -54,48 +47,36 @@ public class InstagramTitleBar extends FrameLayout {
                 mClickListener.onLeftViewClick();
             }
         });
+        mLeftView.setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getContext(), R.color.picture_color_white), PorterDuff.Mode.MULTIPLY));
         addView(mLeftView);
 
-        mCenterView = new ImageView(context);
+        mCenterView = new TextView(context);
         mCenterView.setPadding(ScreenUtils.dip2px(context, 10), 0, ScreenUtils.dip2px(context, 10), 0);
-        mCenterView.setOnClickListener(v -> {
-            if (mClickListener != null) {
-                mClickListener.onCenterViewClick(mCenterView);
-            }
-        });
+        mCenterView.setTextColor(ContextCompat.getColor(context, R.color.picture_color_white));
+        mCenterView.setTextSize(18);
+        mCenterView.setGravity(Gravity.CENTER);
+        mCenterView.setText(context.getString(R.string.cover));
         addView(mCenterView);
-        switch (mediaType) {
-            case SINGLE_VIDEO:
-                mCenterView.setImageResource(R.drawable.discover_volume_off);
-                break;
-            default:
-                mCenterView.setVisibility(View.GONE);
-                break;
-        }
-
-//        if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DEFAULT) {
-            mLeftView.setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getContext(), R.color.picture_color_black), PorterDuff.Mode.MULTIPLY));
-            mCenterView.setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getContext(), R.color.picture_color_black), PorterDuff.Mode.MULTIPLY));
-//        }
 
         mRightView = new TextView(context);
-        mRightView.setPadding(ScreenUtils.dip2px(context, 10), 0, ScreenUtils.dip2px(context, 10), 0);
-        int textColor;
-        if (config.style.pictureRightDefaultTextColor != 0) {
-            textColor = config.style.pictureRightDefaultTextColor;
-        } else {
-//            if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DARK) {
-//                textColor = ContextCompat.getColor(context, R.color.picture_color_1766FF);
-//            } else if (config.instagramSelectionConfig.getCurrentTheme() == InsGallery.THEME_STYLE_DARK_BLUE) {
-//                textColor = Color.parseColor("#2FA6FF");
-//            } else {
-                textColor = ContextCompat.getColor(context, R.color.picture_color_1766FF);
-//            }
-        }
-        mRightView.setTextColor(textColor);
+//        RelativeLayout.LayoutParams  lp = new RelativeLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+//        FrameLayout.LayoutParams  lp = (FrameLayout.LayoutParams) mRightView.getLayoutParams();
+//        lp.setMargins(0, 0, ScreenUtils.dip2px(context, 16), 0);
+//        mRightView.setLayoutParams(lp);
+//        mRightView.setRight(ScreenUtils.dip2px(context, 16));
+
+        mRightView.setHeight(ScreenUtils.dip2px(context, 30));
+        mRightView.setWidth(ScreenUtils.dip2px(context, 70));
+        mRightView.setPadding(ScreenUtils.dip2px(context, 14), ScreenUtils.dip2px(context, 5), ScreenUtils.dip2px(context, 14), ScreenUtils.dip2px(context, 5));
+        mRightView.setTextColor(ContextCompat.getColor(context, R.color.picture_color_white));
         mRightView.setTextSize(14);
         mRightView.setText(context.getString(R.string.next));
         mRightView.setGravity(Gravity.CENTER);
+        mRightView.setBackground(new CommonShapeBuilder()
+                .setColor(ContextCompat.getColor(context, R.color.color_ff4338))
+                .setCornerRadius(ScreenUtils.dip2px(context, 15))
+                .build()
+        );
         mRightView.setOnClickListener(v -> {
             if (mClickListener != null) {
                 mClickListener.onRightViewClick();
@@ -118,7 +99,8 @@ public class InstagramTitleBar extends FrameLayout {
             mCenterView.measure(MeasureSpec.makeMeasureSpec(width, MeasureSpec.AT_MOST), MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY));
         }
 
-        mRightView.measure(MeasureSpec.makeMeasureSpec(width, MeasureSpec.AT_MOST), MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY));
+        int rightHeight = ScreenUtils.dip2px(getContext(), 30);
+        mRightView.measure(MeasureSpec.makeMeasureSpec(width, MeasureSpec.AT_MOST), MeasureSpec.makeMeasureSpec(rightHeight, MeasureSpec.EXACTLY));
         setMeasuredDimension(width, height);
     }
 
@@ -135,7 +117,8 @@ public class InstagramTitleBar extends FrameLayout {
         }
 
         viewTop = (getMeasuredHeight() - mRightView.getMeasuredHeight()) / 2;
-        viewLeft = getMeasuredWidth() - mRightView.getMeasuredWidth();
+        int rightMargin = ScreenUtils.dip2px(getContext(), 16);
+        viewLeft = getMeasuredWidth() - mRightView.getMeasuredWidth() - rightMargin;
         mRightView.layout(viewLeft, viewTop, viewLeft + mRightView.getMeasuredWidth(), viewTop + mRightView.getMeasuredHeight());
 
     }
@@ -146,7 +129,6 @@ public class InstagramTitleBar extends FrameLayout {
 
     public interface OnTitleBarItemOnClickListener {
         void onLeftViewClick();
-        void onCenterViewClick(ImageView view);
         void onRightViewClick();
     }
 }
