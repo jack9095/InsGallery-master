@@ -37,7 +37,7 @@ import java.util.concurrent.CountDownLatch;
 /**
  * 视频封面选择器
  */
-public class CoverContainer extends FrameLayout {
+public class CoverContainerCopy extends FrameLayout {
     private final ImageView[] mImageViews = new ImageView[10]; // 把视频几等份的图片集合，这里是 10等份
     private int mImageViewHeight; // 展示图片控件的高度，写死的 60dp
     private int mImageViewWidth;  // 展示图片控件的宽度
@@ -45,14 +45,17 @@ public class CoverContainer extends FrameLayout {
     private View mMaskView;  // 未被选择的图片上面的蒙层View，百分之70 的透明度
     private ZoomView mZoomView; // 选中图片上面的蒙板View,可以跟着手指滑动
     private int startedTrackingX; // X轴跟踪手指移动的坐标
-    private float scrollHorizontalPosition; // 当前实时水平滑动的位置（x轴坐标）
+    private int startedTrackingY; // Y轴跟踪手指移动的坐标
+    int startClickX;  // 手指按下去的X轴的坐标
+    int startClickY;  // 手指按下去的Y轴的坐标，暂时没什么用
+    private float scrollHorizontalPosition;
     private onSeekListener mOnSeekListener;
     private LocalMedia mLocalMedia; // 传进来的数据，包含视频的路径
     private long mChangeTime;
     private GetFrameBitmapTask mGetFrameBitmapTask; // 解析视频帧图片的任务
-    private float mCurrentPercent;  // 当前的百分比
+    private float mCurrentPercent;
 
-    public CoverContainer(@NonNull Context context, LocalMedia media) {
+    public CoverContainerCopy(@NonNull Context context, LocalMedia media) {
         super(context);
         mLocalMedia = media;
         mImageViewHeight = ScreenUtils.dip2px(getContext(), 60);
@@ -72,15 +75,15 @@ public class CoverContainer extends FrameLayout {
         addView(mZoomView);
     }
 
-    public CoverContainer(@NonNull Context context) {
+    public CoverContainerCopy(@NonNull Context context) {
         super(context);
     }
 
-    public CoverContainer(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public CoverContainerCopy(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public CoverContainer(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public CoverContainerCopy(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -102,10 +105,7 @@ public class CoverContainer extends FrameLayout {
             imageView.measure(MeasureSpec.makeMeasureSpec(mImageViewWidth, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(mImageViewHeight, MeasureSpec.EXACTLY));
         }
 
-        int maskViewWidth = width - ScreenUtils.dip2px(getContext(), 40) + mImageViews.length - 1;
-        mMaskView.measure(
-                MeasureSpec.makeMeasureSpec(maskViewWidth, MeasureSpec.EXACTLY),
-                MeasureSpec.makeMeasureSpec(mImageViewHeight, MeasureSpec.EXACTLY));
+        mMaskView.measure(MeasureSpec.makeMeasureSpec(width - ScreenUtils.dip2px(getContext(), 40) + mImageViews.length - 1, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(mImageViewHeight, MeasureSpec.EXACTLY));
         mZoomView.measure(MeasureSpec.makeMeasureSpec(mImageViewHeight, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(mImageViewHeight, MeasureSpec.EXACTLY));
         setMeasuredDimension(width, height);
     }
@@ -132,20 +132,27 @@ public class CoverContainer extends FrameLayout {
     public boolean onTouchEvent(MotionEvent event) {
         Rect rect = new Rect();
         mMaskView.getHitRect(rect);
-
-        // 限制手指滑动范围的，滑动不再封面图控件上就不响应事件
-//        if (!rect.contains((int) (event.getX()), (int) (event.getY()))) {
-//            return super.onTouchEvent(event);
-//        }
+        if (!rect.contains((int) (event.getX()), (int) (event.getY()))) {
+            return super.onTouchEvent(event);
+        }
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             startedTrackingX = (int) event.getX();
-            moveByX(startedTrackingX - ScreenUtils.dip2px(getContext(), 20) - mZoomView.getMeasuredWidth() / 2);
+            startedTrackingY = (int) event.getY();
+
+            startClickX = (int) event.getX();
+            startClickY = (int) event.getY();
+
+            moveByX(startClickX - ScreenUtils.dip2px(getContext(), 20) - mZoomView.getMeasuredWidth() / 2);
 
         } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
             float dx = (int) (event.getX() - startedTrackingX);
+            float dy = (int) event.getY() - startedTrackingY;
+
             moveByX(dx);
+
             startedTrackingX = (int) event.getX();
+            startedTrackingY = (int) event.getY();
         } else if (event.getAction() == MotionEvent.ACTION_CANCEL || event.getAction() == MotionEvent.ACTION_UP) {
             if (mOnSeekListener != null) {
                 mOnSeekListener.onSeekEnd();
@@ -249,17 +256,17 @@ public class CoverContainer extends FrameLayout {
     }
 
     public static class OnSingleBitmapListenerImpl implements GetAllFrameTask.OnSingleBitmapListener {
-        private WeakReference<CoverContainer> mContainerWeakReference;
+        private WeakReference<CoverContainerCopy> mContainerWeakReference;
         private int index;
 
-        public OnSingleBitmapListenerImpl(CoverContainer coverContainer) {
+        public OnSingleBitmapListenerImpl(CoverContainerCopy coverContainer) {
             mContainerWeakReference = new WeakReference<>(coverContainer);
         }
 
 
         @Override
         public void onSingleBitmapComplete(Bitmap bitmap) {
-            CoverContainer container = mContainerWeakReference.get();
+            CoverContainerCopy container = mContainerWeakReference.get();
             if (container != null) {
                 container.post(new RunnableImpl(container.mImageViews[index], bitmap));
                 index++;
@@ -307,6 +314,7 @@ public class CoverContainer extends FrameLayout {
 
     public interface onSeekListener {
         void onSeek(float percent);
+
         void onSeekEnd();
     }
 }
