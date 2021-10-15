@@ -25,6 +25,8 @@ import com.kuanquan.picture_test.thread.PictureThreadUtils;
 import com.kuanquan.picture_test.util.ScreenUtils;
 import com.kuanquan.picture_test.util.SdkVersionUtils;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.OutputStream;
@@ -39,7 +41,7 @@ import java.util.concurrent.CountDownLatch;
  * ================================================
  */
 public class CoverContainer extends FrameLayout {
-    private ImageView[] mImageViews = new ImageView[10];
+    private final ImageView[] mImageViews = new ImageView[10];
     private int mImageViewHeight;
     private int mImageViewWidth;
     private getAllFrameTask mFrameTask;
@@ -51,14 +53,14 @@ public class CoverContainer extends FrameLayout {
     int startClickY;
     private float scrollHorizontalPosition;
     private onSeekListener mOnSeekListener;
-    private LocalMedia mMedia;
+    private LocalMedia mLocalMedia;
     private long mChangeTime;
     private getFrameBitmapTask mGetFrameBitmapTask;
     private float mCurrentPercent;
 
     public CoverContainer(@NonNull Context context, LocalMedia media) {
         super(context);
-        mMedia = media;
+        mLocalMedia = media;
         mImageViewHeight = ScreenUtils.dip2px(getContext(), 60);
 
         for (int i = 0; i < mImageViews.length; i++) {
@@ -179,8 +181,8 @@ public class CoverContainer extends FrameLayout {
         if (SystemClock.uptimeMillis() - mChangeTime > 200) {
             mChangeTime = SystemClock.uptimeMillis();
 
-            long time = Math.round(mMedia.getDuration() * mCurrentPercent * 1000);
-            mGetFrameBitmapTask = new getFrameBitmapTask(getContext(), mMedia, false, time, mImageViewHeight, mImageViewHeight, new OnCompleteListenerImpl(mZoomView));
+            long time = Math.round(mLocalMedia.getDuration() * mCurrentPercent * 1000);
+            mGetFrameBitmapTask = new getFrameBitmapTask(getContext(), mLocalMedia, false, time, mImageViewHeight, mImageViewHeight, new OnCompleteListenerImpl(mZoomView));
             mGetFrameBitmapTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         }
 
@@ -189,14 +191,16 @@ public class CoverContainer extends FrameLayout {
         }
     }
 
+    String scanFilePath; // 保存后扫描到的图片路径
     public void cropCover(CountDownLatch count) {
         long time;
         if (mCurrentPercent > 0) {
-            time = Math.round(mMedia.getDuration() * mCurrentPercent * 1000);
+            time = Math.round(mLocalMedia.getDuration() * mCurrentPercent * 1000);
         } else {
             time = -1;
         }
-        new getFrameBitmapTask(getContext(), mMedia, false, time, bitmap -> PictureThreadUtils.executeByIo(new PictureThreadUtils.SimpleTask<File>() {
+        new getFrameBitmapTask(getContext(), mLocalMedia, false, time,
+                bitmap -> PictureThreadUtils.executeByIo(new PictureThreadUtils.SimpleTask<File>() {
 
             @Override
             public File doInBackground() {
@@ -207,16 +211,19 @@ public class CoverContainer extends FrameLayout {
                 try {
                     file.getParentFile().mkdirs();
                     outputStream = getContext().getApplicationContext().getContentResolver().openOutputStream(Uri.fromFile(file));
+                    // 压缩图片 80 是压缩率，表示压缩20%; 如果不压缩是100，表示压缩率为0，把图片压缩到 outputStream 所在的文件夹下
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
                     bitmap.recycle();
-                    MediaScannerConnection.scanFile(getContext().getApplicationContext(),
-                            new String[]{
-                                    file.toString()
-                            }, null,
+                    MediaScannerConnection.scanFile(
+                            getContext().getApplicationContext(),
+                            new String[]{file.toString()}, null,
                             (path1, uri) -> {
-                                mMedia.setCoverPath(path1);
+                                scanFilePath = path1;
+                                EventBus.getDefault().post(path1);
+                                mLocalMedia.setCoverPath(path1);
                                 count.countDown();
-                            });
+                            }
+                    );
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } finally {
@@ -227,7 +234,7 @@ public class CoverContainer extends FrameLayout {
 
             @Override
             public void onSuccess(File result) {
-
+                // TODO finish 当前页面
             }
         })).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }

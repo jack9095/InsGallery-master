@@ -57,10 +57,6 @@ public class InstagramMediaProcessActivity extends AppCompatActivity {
         if (mPictureSelectionConfig == null) {
             mPictureSelectionConfig = PictureSelectionConfig.getInstance();
         }
-        if (!mPictureSelectionConfig.camera) {
-            setTheme(mPictureSelectionConfig.themeStyleId == 0 ? R.style.picture_default_style : mPictureSelectionConfig.themeStyleId);
-        }
-
         if (getIntent() != null) {
             isAspectRatio = getIntent().getBooleanExtra(EXTRA_ASPECT_RATIO, false);
         }
@@ -97,7 +93,7 @@ public class InstagramMediaProcessActivity extends AppCompatActivity {
         }
         // 视频控件
         InstagramMediaSingleVideoContainer singleVideoContainer =
-                new InstagramMediaSingleVideoContainer(this, mPictureSelectionConfig, mSelectMedia.get(0), isAspectRatio);
+                new InstagramMediaSingleVideoContainer(this, mSelectMedia.get(0), isAspectRatio);
         contentView.addView(singleVideoContainer,
                 FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
 

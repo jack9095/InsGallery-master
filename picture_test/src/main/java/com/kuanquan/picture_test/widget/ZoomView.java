@@ -5,16 +5,14 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+import androidx.appcompat.widget.AppCompatImageView;
+
 import com.kuanquan.picture_test.util.ScreenUtils;
 
 /**
- * ================================================
- * Created by JessYan on 2020/7/9 11:26
- * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
- * <a href="https://github.com/JessYanCoding">Follow me</a>
- * ================================================
+ * 手指触摸放大的 View
  */
-public class ZoomView extends androidx.appcompat.widget.AppCompatImageView {
+public class ZoomView extends AppCompatImageView {
     private Paint mPaint;
     private Bitmap mBitmap;
 
@@ -36,6 +34,14 @@ public class ZoomView extends androidx.appcompat.widget.AppCompatImageView {
         if (mBitmap != null) {
             canvas.drawBitmap(mBitmap, 0, 0, mPaint);
         }
-        canvas.drawRect(ScreenUtils.dip2px(getContext(), 1), ScreenUtils.dip2px(getContext(), 1), getMeasuredWidth()- ScreenUtils.dip2px(getContext(), 1), getMeasuredHeight() - ScreenUtils.dip2px(getContext(), 1), mPaint);
+
+//        float right = getMeasuredWidth()- ScreenUtils.dip2px(getContext(), 1);
+        float right = getMeasuredWidth() >> 1;
+        canvas.drawRect(
+                ScreenUtils.dip2px(getContext(), 1),
+                ScreenUtils.dip2px(getContext(), 1),
+                right,
+                getMeasuredHeight() - ScreenUtils.dip2px(getContext(), 1),
+                mPaint);
     }
 }

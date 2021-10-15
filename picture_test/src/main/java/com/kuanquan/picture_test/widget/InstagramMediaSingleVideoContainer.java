@@ -1,6 +1,5 @@
 package com.kuanquan.picture_test.widget;
 
-import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
@@ -11,24 +10,20 @@ import android.graphics.PorterDuffColorFilter;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import com.kuanquan.picture_test.InstagramMediaProcessActivity;
-import com.kuanquan.picture_test.PictureSelectionConfig;
 import com.kuanquan.picture_test.R;
 import com.kuanquan.picture_test.callback.LifecycleCallBack;
 import com.kuanquan.picture_test.callback.ProcessStateCallBack;
 import com.kuanquan.picture_test.model.LocalMedia;
 import com.kuanquan.picture_test.task.getFrameBitmapTask;
-import com.kuanquan.picture_test.util.AnimatorListenerImpl;
 import com.kuanquan.picture_test.util.SdkVersionUtils;
 import com.kuanquan.picture_test.util.ToastUtils;
 
@@ -41,44 +36,28 @@ import java.util.concurrent.CountDownLatch;
  * <a href="https://github.com/JessYanCoding">Follow me</a>
  */
 public class InstagramMediaSingleVideoContainer extends FrameLayout implements ProcessStateCallBack, LifecycleCallBack {
-    private FrameLayout mTopContainer;
-    private CoverContainer mCoverView;
-    private VideoView mVideoView;
-    private ImageView mThumbView;
-    private ImageView mPlayButton;
-    private MediaPlayer mMediaPlayer;
-    private PictureSelectionConfig mConfig;
-    private LocalMedia mMedia;
-    private boolean isStart;
-    private ObjectAnimator mPlayAnimator;
-    private boolean isFrist;
-    private boolean isVolumeOff;
-    private int mCoverPlayPosition;
-    private boolean isPlay;
-    private boolean needPause;
+    private FrameLayout mTopContainer;  // 整体布局根 View
+    private CoverContainer mCoverView;  // 视频封面图选择器
+    private VideoView mVideoView;       // 视频播放控件
+    private ImageView mThumbView;       // 封面图
+    private MediaPlayer mMediaPlayer;   // 系统播放控制器
+    private final LocalMedia mMedia;    // 视频及封面图实体类
+    private boolean isStart;  // true 表示可以播放
+    private boolean isFirst;  // 是不是第一次进来
+    private boolean isVolumeOff; // true 关闭声音， false 打开声音
+    private int mCoverPlayPosition; // 记录封面所在的播放点
+    private boolean isPlay;  // true 在播放状态， false 停止播放状态
+    private boolean needPause; // 需要暂停标识
     private boolean needSeekCover;
 
-    public InstagramMediaSingleVideoContainer(@NonNull Context context) {
+    public InstagramMediaSingleVideoContainer(@NonNull Context context, LocalMedia media, boolean isAspectRatio) {
         super(context);
-    }
-
-    public InstagramMediaSingleVideoContainer(@NonNull Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-    }
-
-    public InstagramMediaSingleVideoContainer(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-    }
-
-    public InstagramMediaSingleVideoContainer(@NonNull Context context, PictureSelectionConfig config, LocalMedia media, boolean isAspectRatio) {
-        super(context);
-        mConfig = config;
         mMedia = media;
         init(context, media, isAspectRatio);
     }
 
     private void init(Context context, LocalMedia media, boolean isAspectRatio) {
-        View rootView = inflate(context, R.layout.aaa_video,this);
+        View rootView = inflate(context, R.layout.aaa_video, this);
         mTopContainer = rootView.findViewById(R.id.root_view);
         mVideoView = rootView.findViewById(R.id.video_view);
         mVideoView.setVisibility(View.GONE);
@@ -120,18 +99,14 @@ public class InstagramMediaSingleVideoContainer extends FrameLayout implements P
 
         mThumbView = rootView.findViewById(R.id.image_view);
 
-        mPlayButton = rootView.findViewById(R.id.play_view);
-        mPlayButton.setOnClickListener(v -> startVideo(!isStart));
-
         mCoverView = new CoverContainer(context, media);
         addView(mCoverView);
 
-//        mCoverView = rootView.findViewById(R.id.cover_view);
         mCoverView.getFrame(getContext(), media);
         mCoverView.setOnSeekListener(new CoverContainer.onSeekListener() {
             @Override
             public void onSeek(float percent) {
-                if (!isFrist) {
+                if (!isFirst) {
                     startVideo(true);
                 }
                 mVideoView.seekTo((int) (mMedia.getDuration() * percent));
@@ -143,7 +118,6 @@ public class InstagramMediaSingleVideoContainer extends FrameLayout implements P
                 if (isStart && isPlay) {
                     startVideo(false);
                 }
-                mPlayButton.setVisibility(GONE);
             }
         });
 
@@ -151,43 +125,25 @@ public class InstagramMediaSingleVideoContainer extends FrameLayout implements P
     }
 
     /**
-     *
      * @param start true 播放，false 暂停
      */
     private void startVideo(boolean start) {
         if (isStart == start) {
             return;
         }
-
-        if (isFrist && start) {
+        if (isFirst && start) {
             return;
         }
-
         isStart = start;
-
-        if (!isFrist) {
-            isFrist = true;
+        if (!isFirst) {
+            isFirst = true;
             mVideoView.setVisibility(View.VISIBLE);
         }
-
-        if (mPlayAnimator != null && mPlayAnimator.isRunning()) {
-            mPlayAnimator.cancel();
-        }
         if (!start) {
-            mPlayButton.setVisibility(VISIBLE);
-            mPlayAnimator = ObjectAnimator.ofFloat(mPlayButton, "alpha", 0, 1.0f).setDuration(200);
             mVideoView.pause();
         } else {
-            mPlayAnimator = ObjectAnimator.ofFloat(mPlayButton, "alpha", 1.0f, 0).setDuration(200);
-            mPlayAnimator.addListener(new AnimatorListenerImpl() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mPlayButton.setVisibility(GONE);
-                }
-            });
             mVideoView.start();
         }
-        mPlayAnimator.start();
     }
 
     private void offVolume(ImageView view, boolean off) {
@@ -199,8 +155,8 @@ public class InstagramMediaSingleVideoContainer extends FrameLayout implements P
             view.setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getContext(), R.color.picture_color_1766FF), PorterDuff.Mode.MULTIPLY));
             ToastUtils.s(getContext(), getContext().getString(R.string.video_sound_off));
         } else {
-                view.setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getContext(), R.color.picture_color_black), PorterDuff.Mode.MULTIPLY));
-                view.setColorFilter(new PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY));
+            view.setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getContext(), R.color.picture_color_black), PorterDuff.Mode.MULTIPLY));
+            view.setColorFilter(new PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY));
             ToastUtils.s(getContext(), getContext().getString(R.string.video_sound_on));
         }
         if (mMediaPlayer != null) {
@@ -242,16 +198,9 @@ public class InstagramMediaSingleVideoContainer extends FrameLayout implements P
     }
 
     @Override
-    public void onCenterFeature(InstagramMediaProcessActivity activity, ImageView view) {
-        offVolume(view, !isVolumeOff);
-    }
-
-    @Override
     public void onProcess(InstagramMediaProcessActivity activity) {
         int c = 1;
-        if (mConfig.instagramSelectionConfig.haveCover()) {
-            c++;
-        }
+        c++;
         CountDownLatch count = new CountDownLatch(c);
         mCoverView.cropCover(count);
     }
@@ -268,17 +217,17 @@ public class InstagramMediaSingleVideoContainer extends FrameLayout implements P
 
     @Override
     public void onResume(InstagramMediaProcessActivity activity) {
-            if (!mVideoView.isPlaying()) {
-                mVideoView.start();
-            }
-            needPause = true;
-            needSeekCover = true;
+        if (!mVideoView.isPlaying()) {
+            mVideoView.start();
+        }
+        needPause = true;
+        needSeekCover = true;
         isStart = false;
     }
 
     @Override
     public void onPause(InstagramMediaProcessActivity activity) {
-            mCoverPlayPosition = mVideoView.getCurrentPosition();
+        mCoverPlayPosition = mVideoView.getCurrentPosition();
         if (mVideoView.isPlaying()) {
             mVideoView.stopPlayback();
         }

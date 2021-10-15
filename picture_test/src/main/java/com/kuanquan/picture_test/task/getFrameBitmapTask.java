@@ -112,6 +112,7 @@ public class getFrameBitmapTask extends AsyncTask<Void, Void, Bitmap> {
                     int cropWidth = Math.min(frame.getWidth(), frame.getHeight());
                     int cropOffsetX = (frame.getWidth() - cropWidth) / 2;
                     int cropOffsetY = (frame.getHeight() - cropWidth) / 2;
+                    // TODO 获取滑动到某处的帧图片 width = cropWidth / 2
                     frame = Bitmap.createBitmap(frame, cropOffsetX, cropOffsetY, cropWidth, cropWidth);
                 }
                 mediaMetadataRetriever.release();

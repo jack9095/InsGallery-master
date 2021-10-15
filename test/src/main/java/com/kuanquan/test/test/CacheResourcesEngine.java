@@ -1,4 +1,4 @@
-package com.kuanquan.picture_test.config;
+package com.kuanquan.test.test;
 
 import android.content.Context;
 

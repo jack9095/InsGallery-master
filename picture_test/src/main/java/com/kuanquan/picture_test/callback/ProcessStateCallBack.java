@@ -14,7 +14,6 @@ import com.kuanquan.picture_test.InstagramMediaProcessActivity;
  */
 public interface ProcessStateCallBack {
     void onBack(InstagramMediaProcessActivity activity);
-    void onCenterFeature(InstagramMediaProcessActivity activity, ImageView view);
     void onProcess(InstagramMediaProcessActivity activity);
     void onActivityResult(InstagramMediaProcessActivity activity, int requestCode, int resultCode, Intent data);
 }
