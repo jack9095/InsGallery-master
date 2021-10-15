@@ -1,0 +1,82 @@
+<resources>
+    <string name="picture_camera_roll" translatable="false">相机胶卷</string>
+    <string name="picture_camera_roll_num" translatable="false">%1$s (%2$d)</string>
+    <string name="picture_cancel" translatable="false">取消</string>
+    <string name="picture_take_picture" translatable="false">拍摄</string>
+    <string name="picture_rule" translatable="false">不能同时选择图片或视频</string>
+    <string name="picture_message_max_num" translatable="false">你最多只能选择%1$s张照片</string>
+    <string name="picture_min_video_num" translatable="false">视频最低选择不能少于%1$s个</string>
+    <string name="picture_message_video_max_num" translatable="false">你最多只能选择%1$s个视频</string>
+    <string name="picture_message_audio_max_num" translatable="false">你最多只能选择%1$s个音频</string>
+    <string name="picture_preview" translatable="false">预览</string>
+    <string name="picture_please" translatable="false">请稍候...</string>
+    <string name="picture_done_front_num" translatable="false">%1$d/%2$d 完成</string>
+    <string name="picture_completed" translatable="false">已完成</string>
+    <string name="picture_done" translatable="false">完 成</string>
+    <string name="picture_please_select" translatable="false">请选择</string>
+    <string name="picture_empty_title" translatable="false">无视频或照片\n</string>
+    <string name="picture_empty_audio_title" translatable="false">无音频文件\n</string>
+    <string name="picture_empty" translatable="false">你可以使用相机拍摄照片或视频</string>
+    <string name="picture_audio_empty" translatable="false">你可以使用系统录音录制音频</string>
+    <string name="picture_min_img_num" translatable="false">图片最低选择不能少于%1$s张</string>
+    <string name="picture_gif_tag" translatable="false">动图</string>
+    <string name="picture_jurisdiction" translatable="false">读取内存卡权限被拒绝</string>
+    <string name="picture_camera" translatable="false">获取系统相机权限被拒绝</string>
+    <string name="picture_audio" translatable="false">获取系统录音权限被拒绝</string>
+    <string name="picture_video_toast" translatable="false">视频不可预览</string>
+    <string name="picture_record_video" translatable="false">录视频</string>
+    <string name="picture_photograph" translatable="false">拍照</string>
+    <string name="picture_long_chart" translatable="false">长图</string>
+    <string name="picture_warning" translatable="false">暂无媒体文件！</string>
+    <string name="picture_prompt" translatable="false">提示</string>
+    <string name="picture_prompt_content" translatable="false">是否保存图片至手机？</string>
+    <string name="picture_save_error" translatable="false">图片保存失败</string>
+    <string name="picture_save_success" translatable="false">图片保存成功至</string>
+    <string name="picture_all_audio" translatable="false">所有音频</string>
+    <string name="picture_tape" translatable="false">录音</string>
+    <string name="picture_play_audio" translatable="false">播放</string>
+    <string name="picture_stop_audio" translatable="false">停止</string>
+    <string name="picture_pause_audio" translatable="false">暂停</string>
+    <string name="picture_error" translatable="false">图片已损坏</string>
+    <string name="picture_video_error" translatable="false">视频已损坏</string>
+    <string name="picture_audio_error" translatable="false">音频已损坏</string>
+    <string name="picture_confirm" translatable="false">确定</string>
+    <string name="picture_preview_image_num" translatable="false">%1$d/%2$d</string>
+    <string name="picture_not_crop_data" translatable="false">无可用裁剪数据</string>
+    <string name="picture_original_image" translatable="false">原图</string>
+    <string name="picture_send" translatable="false">完成</string>
+    <string name="picture_send_num" translatable="false">完成(%1$d/%2$d)</string>
+    <string name="picture_preview_num" translatable="false">预览(%1$d)</string>
+    <string name="picture_select" translatable="false">选择</string>
+    <string name="picture_data_exception" translatable="false">获取相册数据异常...</string>
+    <string name="picture_recording_time_is_short" translatable="false">录制时间过短</string>
+    <string name="picture_photo_camera" translatable="false">单击拍照，长按摄像</string>
+    <string name="picture_photo_pictures" translatable="false">单击拍照</string>
+    <string name="picture_photo_recording" translatable="false">长按摄像</string>
+    <string name="picture_choose_max_seconds" translatable="false">最大只能选择 %1$ds 以内的视频</string>
+    <string name="picture_choose_min_seconds" translatable="false">不能选择低于 %1$ds 内的视频</string>
+    <string name="picture_choose_limit_seconds" translatable="false">只能选择 %1$ds 至 %2$ds内的视频</string>
+    <string name="picture_go_setting" translatable="false">去设置</string>
+    <string name="gallery" translatable="false">图库</string>
+    <string name="photo" translatable="false">照片</string>
+    <string name="video" translatable="false">视频</string>
+    <string name="press_to_record" translatable="false">按住录制视频。</string>
+    <string name="alert_record" translatable="false">视频录制至少需要%d秒。</string>
+    <string name="camera_access" translatable="false">启用相机访问权限</string>
+    <string name="camera_access_content" translatable="false">允许访问即可拍摄照片和视频。</string>
+    <string name="enable" translatable="false">启用</string>
+    <string name="done" translatable="false">完成</string>
+    <string name="camera_init" translatable="false">相机初始化中...</string>
+    <string name="picture_know" translatable="false">我知道了</string>
+    <string name="picture_data_null" translatable="false">这里空空如也…</string>
+    <string name="next" translatable="false">继续</string>
+    <string name="discard_edits" translatable="false">放弃编辑?</string>
+    <string name="discard_edits_alert" translatable="false">如现在返回，图片编辑将被取消。</string>
+    <string name="discard" translatable="false">放弃</string>
+    <string name="next_alert" translatable="false">图片加载完成后才能继续下一步哦！</string>
+    <string name="video_sound_off" translatable="false">视频声音: 关</string>
+    <string name="video_sound_on" translatable="false">视频声音: 开</string>
+    <string name="trim" translatable="false">修剪</string>
+    <string name="cover" translatable="false">封面</string>
+    <string name="video_clip_failed" translatable="false">视频剪切失败！</string>
+</resources>

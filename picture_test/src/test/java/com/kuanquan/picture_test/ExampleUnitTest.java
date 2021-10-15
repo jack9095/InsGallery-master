@@ -1,4 +1,4 @@
-package com.kuanquan.test;
+package com.kuanquan.picture_test;
 
 import org.junit.Test;
 

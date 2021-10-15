@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.kuanquan.picture_test">
+
+    <application>
+        <activity android:name=".InstagramMediaProcessActivity"
+            android:screenOrientation="portrait"/>
+    </application>
+</manifest>

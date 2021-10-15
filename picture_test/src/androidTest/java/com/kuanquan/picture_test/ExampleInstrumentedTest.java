@@ -1,4 +1,4 @@
-package com.kuanquan.test;
+package com.kuanquan.picture_test;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.kuanquan.test", appContext.getPackageName());
+        assertEquals("com.kuanquan.picture_test.test", appContext.getPackageName());
     }
 }

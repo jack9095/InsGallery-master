@@ -2,3 +2,4 @@
 include ':test'
 include ':picture_library_test'
 include ':ucrop_test'
+include ':picture_test'

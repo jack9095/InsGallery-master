@@ -2,7 +2,9 @@ package com.kuanquan.test;
 
 import android.content.Context;
 
-import com.luck.picture.lib.engine.CacheResourcesEngine;
+//import com.luck.picture.lib.engine.CacheResourcesEngine;
+
+import com.kuanquan.picture_test.config.CacheResourcesEngine;
 
 import java.io.File;
 
