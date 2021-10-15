@@ -29,7 +29,6 @@ import java.util.List;
 public class InstagramMediaProcessActivity extends AppCompatActivity {
 
     protected View container;
-    protected PictureSelectionConfig mPictureSelectionConfig;
 
     public static final String EXTRA_ASPECT_RATIO = "extra_aspect_ratio";
     public static final int REQUEST_SINGLE_VIDEO_PROCESS = 441;
@@ -51,12 +50,6 @@ public class InstagramMediaProcessActivity extends AppCompatActivity {
             finish();
         }
 
-        if (mPictureSelectionConfig == null) {
-            mPictureSelectionConfig = getIntent() != null ? getIntent().getParcelableExtra(PictureConfig.EXTRA_CONFIG) : mPictureSelectionConfig;
-        }
-        if (mPictureSelectionConfig == null) {
-            mPictureSelectionConfig = PictureSelectionConfig.getInstance();
-        }
         if (getIntent() != null) {
             isAspectRatio = getIntent().getBooleanExtra(EXTRA_ASPECT_RATIO, false);
         }
@@ -157,9 +150,8 @@ public class InstagramMediaProcessActivity extends AppCompatActivity {
         }
     }
 
-    public static void launchActivity(Activity activity, PictureSelectionConfig config, List<LocalMedia> images, Bundle extras, int requestCode) {
+    public static void launchActivity(Activity activity, List<LocalMedia> images, Bundle extras, int requestCode) {
         Intent intent = new Intent(activity.getApplicationContext(), InstagramMediaProcessActivity.class);
-        intent.putExtra(PictureConfig.EXTRA_CONFIG, config);
         intent.putParcelableArrayListExtra(PictureConfig.EXTRA_SELECT_LIST,
                 (ArrayList<? extends Parcelable>) images);
         if (extras != null) {

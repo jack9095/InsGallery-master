@@ -32,38 +32,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="182c9e1a-233f-43fd-9e95-66e28ae27193" name="Default Changelist" comment="test 模型">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_greenrobot_eventbus_3_1_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/picture_test/InsGallery-master.picture_test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/picture_test/InsGallery-master.picture_test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/test/InsGallery-master.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/test/InsGallery-master.test.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/InstagramMediaProcessActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/InstagramMediaProcessActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/PictureSelectionConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/PictureSelectionConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/callback/ProcessStateCallBack.java" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/callback/ProcessStateCallBack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/config/CacheResourcesEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/src/main/java/com/kuanquan/test/test/CacheResourcesEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/config/InstagramSelectionConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/config/OnCustomCameraInterfaceListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/config/OnResultCallbackListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/config/OnVideoSelectedPlayCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/PictureSelectionConfig.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/config/PictureConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/config/PictureConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/config/PictureCropParameterStyle.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/config/PictureParameterStyle.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/config/PictureWindowAnimationStyle.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/config/UCropOptions.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/model/LocalMedia.java" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/model/LocalMedia.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/task/getFrameBitmapTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/task/getFrameBitmapTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/thread/PictureThreadUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/thread/PictureThreadUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/util/AnimatorListenerImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/widget/CoverContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/widget/CoverContainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/widget/InstagramMediaSingleVideoContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/widget/InstagramMediaSingleVideoContainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/widget/InstagramTitleBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/widget/InstagramTitleBar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/widget/ZoomView.java" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/widget/ZoomView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/res/layout/aaa_test.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/res/layout/aaa_video.xml" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/res/layout/aaa_video.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/src/main/java/com/kuanquan/test/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/src/main/java/com/kuanquan/test/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/src/main/java/com/kuanquan/test/test/GlideCacheEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/src/main/java/com/kuanquan/test/test/GlideCacheEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/src/main/java/com/kuanquan/test/test/MainActivityCopy.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/src/main/java/com/kuanquan/test/test/MainActivityCopy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/test/src/main/res/layout/activity_main.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -334,7 +308,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634282216768</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="test 模型">
+      <created>1634289190651</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1634289190651</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -423,10 +404,10 @@
       <screen x="0" y="25" width="1440" height="802" />
     </state>
     <state width="699" height="536" key="SwitcherDM/0.25.1440.802@0.25.1440.802" timestamp="1634265532914" />
-    <state x="320" y="163" key="Vcs.Push.Dialog.v2" timestamp="1634282218342">
+    <state x="320" y="163" key="Vcs.Push.Dialog.v2" timestamp="1634289192364">
       <screen x="0" y="25" width="1440" height="802" />
     </state>
-    <state x="320" y="163" key="Vcs.Push.Dialog.v2/0.25.1440.802@0.25.1440.802" timestamp="1634282218342" />
+    <state x="320" y="163" key="Vcs.Push.Dialog.v2/0.25.1440.802@0.25.1440.802" timestamp="1634289192364" />
     <state x="421" y="181" width="756" height="518" key="find.popup" timestamp="1634287289835">
       <screen x="0" y="25" width="1440" height="802" />
     </state>
