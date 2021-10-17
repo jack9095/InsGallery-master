@@ -11,6 +11,7 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 
 import com.kuanquan.picture_test.callback.LifecycleCallBack;
 import com.kuanquan.picture_test.callback.ProcessStateCallBack;
@@ -71,11 +72,17 @@ public class InstagramMediaProcessActivity extends AppCompatActivity {
         setContentView(contentView);
 
         // 视频控件
-        boolean isAspectRatio = false;
         InstagramMediaSingleVideoContainer singleVideoContainer =
-                new InstagramMediaSingleVideoContainer(this, mSelectMedia.get(0), isAspectRatio);
+                new InstagramMediaSingleVideoContainer(this, mSelectMedia.get(0), false);
         contentView.addView(singleVideoContainer,
                 FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
+
+        singleVideoContainer.mCoverView.mLiveData.observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                finish();
+            }
+        });
 
         mTitleBar = new InstagramTitleBar(this);
         contentView.addView(mTitleBar);

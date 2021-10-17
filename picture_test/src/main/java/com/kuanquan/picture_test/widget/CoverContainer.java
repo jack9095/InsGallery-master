@@ -17,6 +17,8 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.kuanquan.picture_test.R;
 import com.kuanquan.picture_test.model.LocalMedia;
@@ -51,6 +53,7 @@ public class CoverContainer extends FrameLayout {
     private long mChangeTime;
     private GetFrameBitmapTask mGetFrameBitmapTask; // 解析视频帧图片的任务
     private float mCurrentPercent;  // 当前的百分比
+    public MutableLiveData<String> mLiveData = new MutableLiveData<>();
 
     public CoverContainer(@NonNull Context context, LocalMedia media) {
         super(context);
@@ -106,7 +109,8 @@ public class CoverContainer extends FrameLayout {
         mMaskView.measure(
                 MeasureSpec.makeMeasureSpec(maskViewWidth, MeasureSpec.EXACTLY),
                 MeasureSpec.makeMeasureSpec(mImageViewHeight, MeasureSpec.EXACTLY));
-        mZoomView.measure(MeasureSpec.makeMeasureSpec(mImageViewHeight, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(mImageViewHeight, MeasureSpec.EXACTLY));
+//        mZoomView.measure(MeasureSpec.makeMeasureSpec(mImageViewHeight, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(mImageViewHeight, MeasureSpec.EXACTLY));
+        mZoomView.measure(MeasureSpec.makeMeasureSpec(mImageViewWidth, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(mImageViewHeight, MeasureSpec.EXACTLY));
         setMeasuredDimension(width, height);
     }
 
@@ -174,9 +178,10 @@ public class CoverContainer extends FrameLayout {
 
         mCurrentPercent = scrollHorizontalPosition / (mMaskView.getMeasuredWidth() - mZoomView.getMeasuredWidth());
 
-        if (SystemClock.uptimeMillis() - mChangeTime > 200) {
+        if (SystemClock.uptimeMillis() - mChangeTime > 100) {
             mChangeTime = SystemClock.uptimeMillis();
 
+            // 返回一个数字四舍五入后最接近的整数，获取到当前视屏点的毫秒值
             long time = Math.round(mLocalMedia.getDuration() * mCurrentPercent * 1000);
             mGetFrameBitmapTask = new GetFrameBitmapTask(getContext(), mLocalMedia, false, time, mImageViewHeight, mImageViewHeight, new OnCompleteListenerImpl(mZoomView));
             mGetFrameBitmapTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -231,6 +236,7 @@ public class CoverContainer extends FrameLayout {
             @Override
             public void onSuccess(File result) {
                 // TODO finish 当前页面
+                mLiveData.setValue(scanFilePath);
             }
         })).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }

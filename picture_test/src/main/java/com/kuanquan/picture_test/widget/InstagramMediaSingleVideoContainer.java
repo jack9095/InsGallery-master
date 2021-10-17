@@ -37,7 +37,7 @@ import java.util.concurrent.CountDownLatch;
  */
 public class InstagramMediaSingleVideoContainer extends FrameLayout implements ProcessStateCallBack, LifecycleCallBack {
     private FrameLayout mTopContainer;  // 整体布局根 View
-    private CoverContainer mCoverView;  // 视频封面图选择器
+    public CoverContainer mCoverView;  // 视频封面图选择器
     private VideoView mVideoView;       // 视频播放控件
     private ImageView mThumbView;       // 封面图
     private MediaPlayer mMediaPlayer;   // 系统播放控制器
