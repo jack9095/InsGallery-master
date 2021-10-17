@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.widget.ImageView;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
@@ -22,6 +23,8 @@ public class ZoomView extends AppCompatImageView {
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setColor(0XFFDDDDDD);
         mPaint.setStrokeWidth(ScreenUtils.dip2px(getContext(),2));
+
+        setScaleType(ImageView.ScaleType.CENTER_CROP);
     }
 
     public void setBitmap(Bitmap bitmap) {

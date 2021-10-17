@@ -3,8 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/InsGallery-master.iml" filepath="$PROJECT_DIR$/.idea/InsGallery-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/InsGallery-master.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/InsGallery-master.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/picture_library/InsGallery-master.picture_library.iml" filepath="$PROJECT_DIR$/.idea/modules/picture_library/InsGallery-master.picture_library.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/picture_test/InsGallery-master.picture_test.iml" filepath="$PROJECT_DIR$/.idea/modules/picture_test/InsGallery-master.picture_test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/test/InsGallery-master.test.iml" filepath="$PROJECT_DIR$/.idea/modules/test/InsGallery-master.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ucrop/InsGallery-master.ucrop.iml" filepath="$PROJECT_DIR$/.idea/modules/ucrop/InsGallery-master.ucrop.iml" />
     </modules>
   </component>
 </project>

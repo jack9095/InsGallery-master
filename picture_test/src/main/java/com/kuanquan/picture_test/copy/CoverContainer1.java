@@ -1,4 +1,4 @@
-package com.kuanquan.picture_test.widget;
+package com.kuanquan.picture_test.copy;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -17,6 +17,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.MutableLiveData;
 
 import com.kuanquan.picture_test.R;
 import com.kuanquan.picture_test.model.LocalMedia;
@@ -25,6 +26,7 @@ import com.kuanquan.picture_test.task.GetFrameBitmapTask;
 import com.kuanquan.picture_test.thread.PictureThreadUtils;
 import com.kuanquan.picture_test.util.ScreenUtils;
 import com.kuanquan.picture_test.util.SdkVersionUtils;
+import com.kuanquan.picture_test.widget.ZoomView;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -37,7 +39,7 @@ import java.util.concurrent.CountDownLatch;
 /**
  * 视频封面选择器
  */
-public class CoverContainerCopy extends FrameLayout {
+public class CoverContainer1 extends FrameLayout {
     private final ImageView[] mImageViews = new ImageView[10]; // 把视频几等份的图片集合，这里是 10等份
     private int mImageViewHeight; // 展示图片控件的高度，写死的 60dp
     private int mImageViewWidth;  // 展示图片控件的宽度
@@ -45,17 +47,16 @@ public class CoverContainerCopy extends FrameLayout {
     private View mMaskView;  // 未被选择的图片上面的蒙层View，百分之70 的透明度
     private ZoomView mZoomView; // 选中图片上面的蒙板View,可以跟着手指滑动
     private int startedTrackingX; // X轴跟踪手指移动的坐标
-    private int startedTrackingY; // Y轴跟踪手指移动的坐标
-    int startClickX;  // 手指按下去的X轴的坐标
-    int startClickY;  // 手指按下去的Y轴的坐标，暂时没什么用
-    private float scrollHorizontalPosition;
+    private float scrollHorizontalPosition; // 当前实时水平滑动的位置（x轴坐标）
     private onSeekListener mOnSeekListener;
     private LocalMedia mLocalMedia; // 传进来的数据，包含视频的路径
     private long mChangeTime;
     private GetFrameBitmapTask mGetFrameBitmapTask; // 解析视频帧图片的任务
-    private float mCurrentPercent;
+    private float mCurrentPercent;  // 当前的百分比
+    public MutableLiveData<String> mLiveData = new MutableLiveData<>();
+    int startClickX; // 点击确认选中图片上面的蒙板View的x轴位置
 
-    public CoverContainerCopy(@NonNull Context context, LocalMedia media) {
+    public CoverContainer1(@NonNull Context context, LocalMedia media) {
         super(context);
         mLocalMedia = media;
         mImageViewHeight = ScreenUtils.dip2px(getContext(), 60);
@@ -75,20 +76,23 @@ public class CoverContainerCopy extends FrameLayout {
         addView(mZoomView);
     }
 
-    public CoverContainerCopy(@NonNull Context context) {
+    public CoverContainer1(@NonNull Context context) {
         super(context);
     }
 
-    public CoverContainerCopy(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public CoverContainer1(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public CoverContainerCopy(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public CoverContainer1(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     public void getFrame(@NonNull Context context, LocalMedia media) {
-        mGetFrameBitmapTask = new GetFrameBitmapTask(context, media, false, -1, mImageViewHeight, mImageViewHeight, new OnCompleteListenerImpl(mZoomView));
+
+        // 给手指触摸移动的选中view设置显示的图片 一进来mZoomView初始值
+//        mGetFrameBitmapTask = new GetFrameBitmapTask(context, media, false, -1, mImageViewHeight, mImageViewHeight, new OnCompleteListenerImpl(mZoomView));
+        mGetFrameBitmapTask = new GetFrameBitmapTask(context, media, false, 0, mImageViewHeight, mImageViewHeight, new OnCompleteListenerImpl(mZoomView));
         mGetFrameBitmapTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
         mFrameTask = new GetAllFrameTask(context, media, mImageViews.length, 0, (int) media.getDuration(), new OnSingleBitmapListenerImpl(this));
@@ -105,8 +109,12 @@ public class CoverContainerCopy extends FrameLayout {
             imageView.measure(MeasureSpec.makeMeasureSpec(mImageViewWidth, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(mImageViewHeight, MeasureSpec.EXACTLY));
         }
 
-        mMaskView.measure(MeasureSpec.makeMeasureSpec(width - ScreenUtils.dip2px(getContext(), 40) + mImageViews.length - 1, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(mImageViewHeight, MeasureSpec.EXACTLY));
-        mZoomView.measure(MeasureSpec.makeMeasureSpec(mImageViewHeight, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(mImageViewHeight, MeasureSpec.EXACTLY));
+        int maskViewWidth = width - ScreenUtils.dip2px(getContext(), 40) + mImageViews.length - 1;
+        mMaskView.measure(
+                MeasureSpec.makeMeasureSpec(maskViewWidth, MeasureSpec.EXACTLY),
+                MeasureSpec.makeMeasureSpec(mImageViewHeight, MeasureSpec.EXACTLY));
+//        mZoomView.measure(MeasureSpec.makeMeasureSpec(mImageViewHeight, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(mImageViewHeight, MeasureSpec.EXACTLY));
+        mZoomView.measure(MeasureSpec.makeMeasureSpec(mImageViewWidth, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(mImageViewHeight, MeasureSpec.EXACTLY));
         setMeasuredDimension(width, height);
     }
 
@@ -132,31 +140,29 @@ public class CoverContainerCopy extends FrameLayout {
     public boolean onTouchEvent(MotionEvent event) {
         Rect rect = new Rect();
         mMaskView.getHitRect(rect);
-        if (!rect.contains((int) (event.getX()), (int) (event.getY()))) {
-            return super.onTouchEvent(event);
-        }
+
+        // 限制手指滑动范围的，滑动不再封面图控件上就不响应事件
+//        if (!rect.contains((int) (event.getX()), (int) (event.getY()))) {
+//            return super.onTouchEvent(event);
+//        }
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             startedTrackingX = (int) event.getX();
-            startedTrackingY = (int) event.getY();
-
             startClickX = (int) event.getX();
-            startClickY = (int) event.getY();
 
-            moveByX(startClickX - ScreenUtils.dip2px(getContext(), 20) - mZoomView.getMeasuredWidth() / 2);
+            setScrollHorizontalPosition(startClickX - ScreenUtils.dip2px(getContext(), 20) - mZoomView.getMeasuredWidth() / 2);
 
         } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
             float dx = (int) (event.getX() - startedTrackingX);
-            float dy = (int) event.getY() - startedTrackingY;
-
             moveByX(dx);
-
             startedTrackingX = (int) event.getX();
-            startedTrackingY = (int) event.getY();
         } else if (event.getAction() == MotionEvent.ACTION_CANCEL || event.getAction() == MotionEvent.ACTION_UP) {
             if (mOnSeekListener != null) {
                 mOnSeekListener.onSeekEnd();
             }
+            float dx = (int) (event.getX() - startedTrackingX);
+            moveByX(dx);
+            startedTrackingX = (int) event.getX();
         }
         return true;
     }
@@ -178,13 +184,15 @@ public class CoverContainerCopy extends FrameLayout {
         }
 
         mZoomView.setTranslationX(scrollHorizontalPosition);
-
         mCurrentPercent = scrollHorizontalPosition / (mMaskView.getMeasuredWidth() - mZoomView.getMeasuredWidth());
 
-        if (SystemClock.uptimeMillis() - mChangeTime > 200) {
+        if (SystemClock.uptimeMillis() - mChangeTime > 100) {
             mChangeTime = SystemClock.uptimeMillis();
 
+            // 返回一个数字四舍五入后最接近的整数，获取到当前视屏点的毫秒值
             long time = Math.round(mLocalMedia.getDuration() * mCurrentPercent * 1000);
+
+            // TODO 给手指触摸移动的选中view设置显示的图片 手指拖拽 mZoomView 移动的值 bitmap
             mGetFrameBitmapTask = new GetFrameBitmapTask(getContext(), mLocalMedia, false, time, mImageViewHeight, mImageViewHeight, new OnCompleteListenerImpl(mZoomView));
             mGetFrameBitmapTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         }
@@ -238,6 +246,7 @@ public class CoverContainerCopy extends FrameLayout {
             @Override
             public void onSuccess(File result) {
                 // TODO finish 当前页面
+                mLiveData.setValue(scanFilePath);
             }
         })).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
@@ -256,17 +265,17 @@ public class CoverContainerCopy extends FrameLayout {
     }
 
     public static class OnSingleBitmapListenerImpl implements GetAllFrameTask.OnSingleBitmapListener {
-        private WeakReference<CoverContainerCopy> mContainerWeakReference;
+        private WeakReference<CoverContainer1> mContainerWeakReference;
         private int index;
 
-        public OnSingleBitmapListenerImpl(CoverContainerCopy coverContainer) {
+        public OnSingleBitmapListenerImpl(CoverContainer1 coverContainer) {
             mContainerWeakReference = new WeakReference<>(coverContainer);
         }
 
 
         @Override
         public void onSingleBitmapComplete(Bitmap bitmap) {
-            CoverContainerCopy container = mContainerWeakReference.get();
+            CoverContainer1 container = mContainerWeakReference.get();
             if (container != null) {
                 container.post(new RunnableImpl(container.mImageViews[index], bitmap));
                 index++;
@@ -303,7 +312,7 @@ public class CoverContainerCopy extends FrameLayout {
         public void onGetBitmapComplete(Bitmap bitmap) {
             ZoomView view = mViewWeakReference.get();
             if (view != null) {
-                view.setBitmap(bitmap);
+                view.setBitmap(bitmap); // 给手指触摸移动的选中view设置显示的图片
             }
         }
     }
@@ -314,7 +323,6 @@ public class CoverContainerCopy extends FrameLayout {
 
     public interface onSeekListener {
         void onSeek(float percent);
-
         void onSeekEnd();
     }
 }

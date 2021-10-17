@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         List<LocalMedia> result = new ArrayList<>();
         LocalMedia localMedia = new LocalMedia();
         localMedia.setFileName("VID_20210929_18262509.mp4");
-        localMedia.setDuration(17024);
+        localMedia.setDuration(17024); // 毫秒
 //        localMedia.setHeight(1200);
 //        localMedia.setWidth(1600);
 //        localMedia.setSize(5637854);
