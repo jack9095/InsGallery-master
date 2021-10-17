@@ -1,4 +1,4 @@
-package com.kuanquan.picture_test.widget;
+package com.kuanquan.picture_test.copy;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -18,7 +18,6 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.kuanquan.picture_test.R;
@@ -28,6 +27,7 @@ import com.kuanquan.picture_test.task.GetFrameBitmapTask;
 import com.kuanquan.picture_test.thread.PictureThreadUtils;
 import com.kuanquan.picture_test.util.ScreenUtils;
 import com.kuanquan.picture_test.util.SdkVersionUtils;
+import com.kuanquan.picture_test.widget.ZoomView;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -41,7 +41,7 @@ import java.util.concurrent.CountDownLatch;
 /**
  * 视频封面选择器
  */
-public class CoverContainer extends FrameLayout {
+public class CoverContainer2 extends FrameLayout {
     private final ImageView[] mImageViews = new ImageView[10]; // 把视频几等份的图片集合，这里是 10等份
     private int mImageViewHeight; // 展示图片控件的高度，写死的 60dp
     private int mImageViewWidth;  // 展示图片控件的宽度
@@ -60,7 +60,7 @@ public class CoverContainer extends FrameLayout {
 
     ArrayList<Bitmap> bitmaps = new ArrayList<>();
 
-    public CoverContainer(@NonNull Context context, LocalMedia media) {
+    public CoverContainer2(@NonNull Context context, LocalMedia media) {
         super(context);
         mLocalMedia = media;
         mImageViewHeight = ScreenUtils.dip2px(getContext(), 60);
@@ -80,15 +80,15 @@ public class CoverContainer extends FrameLayout {
         addView(mZoomView);
     }
 
-    public CoverContainer(@NonNull Context context) {
+    public CoverContainer2(@NonNull Context context) {
         super(context);
     }
 
-    public CoverContainer(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public CoverContainer2(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public CoverContainer(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public CoverContainer2(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -162,6 +162,11 @@ public class CoverContainer extends FrameLayout {
             dxMove = (int) (event.getX() - startedTrackingX);
             moveByX(dxMove);
             startedTrackingX = (int) event.getX();
+//            postDelayed(() -> {
+//                if (mOnSeekListener != null) {
+//                    mOnSeekListener.onSeekEnd();
+//                }
+//            }, 80);
             if (mOnSeekListener != null) {
                 mOnSeekListener.onSeekEnd();
             }
@@ -176,9 +181,9 @@ public class CoverContainer extends FrameLayout {
             postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    moveByXX(dxMove);
+//                    moveByXX(dxMove);
                 }
-            }, 100);
+            }, 200);
         }
         return true;
     }
@@ -237,6 +242,28 @@ public class CoverContainer extends FrameLayout {
         Log.e("当前滑动的x轴位置", "x -> "+ scrollHorizontalPosition);
         Log.e("当前滑动的x轴百分比", "mCurrentPercent -> "+ mCurrentPercent*100);
 
+//        if (mCurrentPercent*100 <= 10) {
+//            mZoomView.setBitmap(bitmaps.get(0)); // 给手指触摸移动的选中view设置显示的图片
+//        } else if (mCurrentPercent*100 <= 20) {
+//            mZoomView.setBitmap(bitmaps.get(1));
+//        } else if (mCurrentPercent*100 <= 30) {
+//            mZoomView.setBitmap(bitmaps.get(2));
+//        } else if (mCurrentPercent*100 <= 40) {
+//            mZoomView.setBitmap(bitmaps.get(3));
+//        } else if (mCurrentPercent*100 <= 50) {
+//            mZoomView.setBitmap(bitmaps.get(4));
+//        } else if (mCurrentPercent*100 <= 60) {
+//            mZoomView.setBitmap(bitmaps.get(5));
+//        } else if (mCurrentPercent*100 <= 70) {
+//            mZoomView.setBitmap(bitmaps.get(6));
+//        } else if (mCurrentPercent*100 <= 80) {
+//            mZoomView.setBitmap(bitmaps.get(7));
+//        } else if (mCurrentPercent*100 <= 90) {
+//            mZoomView.setBitmap(bitmaps.get(8));
+//        } else if (mCurrentPercent*100 <= 100) {
+//            mZoomView.setBitmap(bitmaps.get(9));
+//        }
+
         if (mOnSeekListener != null) {
             mOnSeekListener.onSeek(mCurrentPercent, true);
         }
@@ -253,6 +280,10 @@ public class CoverContainer extends FrameLayout {
             mChangeTime = SystemClock.uptimeMillis();
             getZoomViewBitmap();
         }
+
+//        if (mOnSeekListener != null) {
+//            mOnSeekListener.onSeek(mCurrentPercent);
+//        }
     }
 
     private void getZoomViewBitmap() {
@@ -327,17 +358,17 @@ public class CoverContainer extends FrameLayout {
     }
 
     public class OnSingleBitmapListenerImpl implements GetAllFrameTask.OnSingleBitmapListener {
-        private WeakReference<CoverContainer> mContainerWeakReference;
+        private WeakReference<CoverContainer2> mContainerWeakReference;
         private int index;
 
-        public OnSingleBitmapListenerImpl(CoverContainer coverContainer) {
+        public OnSingleBitmapListenerImpl(CoverContainer2 coverContainer) {
             mContainerWeakReference = new WeakReference<>(coverContainer);
         }
 
 
         @Override
         public void onSingleBitmapComplete(Bitmap bitmap) {
-            CoverContainer container = mContainerWeakReference.get();
+            CoverContainer2 container = mContainerWeakReference.get();
             if (container != null) {
                 container.post(new RunnableImpl(container.mImageViews[index], bitmap));
                 index++;

@@ -31,64 +31,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="182c9e1a-233f-43fd-9e95-66e28ae27193" name="Default Changelist" comment="调整UI">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_activity_activity_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_1_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_experimental_1_0_0_rc01_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_1_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_2_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_resources_1_1_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_resources_1_2_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_camera_camera_lifecycle_1_0_0_beta03_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_camera_camera_view_1_0_0_alpha10_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_concurrent_concurrent_futures_1_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_2_1_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_1_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_exifinterface_exifinterface_1_3_0_alpha01_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_1_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_2_2_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_1_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_2_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_1_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_savedstate_savedstate_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_3_1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_otaliastudios_opengl_egloo_0_4_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_otaliastudios_transcoder_0_9_1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_leakcanary_leakcanary_android_2_2_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_leakcanary_leakcanary_android_core_2_2_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_leakcanary_leakcanary_object_watcher_2_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_leakcanary_leakcanary_object_watcher_android_2_2_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_leakcanary_leakcanary_object_watcher_android_androidx_2_2_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_leakcanary_leakcanary_object_watcher_android_support_fragments_2_2_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_leakcanary_shark_2_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_leakcanary_shark_android_2_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_leakcanary_shark_graph_2_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_leakcanary_shark_hprof_2_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_leakcanary_shark_log_2_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okio_okio_2_6_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__jp_co_cyberagent_android_gpuimage_2_0_4_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_3_70.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_3_70.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_3_31.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/app/InsGallery-master.app.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/picture_library/InsGallery-master.picture_library.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/ucrop/InsGallery-master.ucrop.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/copy/CoverContainer1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/copy/InstagramMediaSingleVideoContainer1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+    <list default="true" id="182c9e1a-233f-43fd-9e95-66e28ae27193" name="Default Changelist" comment="选中的时间点动起来">
+      <change afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/copy/CoverContainer2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/copy/InstagramMediaSingleVideoContainer2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/widget/CoverContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/widget/CoverContainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/widget/CoverContainerCopy.java" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/copy/CoverContainerCopy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/widget/InstagramMediaSingleVideoContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/widget/InstagramMediaSingleVideoContainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/widget/ZoomView.java" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/widget/ZoomView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/res/layout/aaa_video.xml" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/res/layout/aaa_video.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/src/main/java/com/kuanquan/test/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/src/main/java/com/kuanquan/test/MainActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,6 +99,7 @@
     <property name="android-custom-view/Users/admin/Downloads/InsGallery-master/picture_test/src/main/java/com/kuanquan/picture_test/InstagramMediaSingleVideoContainer.java_SELECTED" value="InstagramMediaSingleVideoContainer" />
     <property name="android-custom-view/Users/admin/Downloads/InsGallery-master/picture_test/src/main/java/com/kuanquan/picture_test/callback/InstagramTitleBar.java_SELECTED" value="InstagramTitleBar" />
     <property name="android-custom-view/Users/admin/Downloads/InsGallery-master/picture_test/src/main/java/com/kuanquan/picture_test/copy/CoverContainer1.java_SELECTED" value="CoverContainer1" />
+    <property name="android-custom-view/Users/admin/Downloads/InsGallery-master/picture_test/src/main/java/com/kuanquan/picture_test/copy/CoverContainer2.java_SELECTED" value="CoverContainer2" />
     <property name="android-custom-view/Users/admin/Downloads/InsGallery-master/picture_test/src/main/java/com/kuanquan/picture_test/copy/CoverContainerCopy.java_SELECTED" value="CoverContainerCopy" />
     <property name="android-custom-view/Users/admin/Downloads/InsGallery-master/picture_test/src/main/java/com/kuanquan/picture_test/util/InstagramTitleBar.java_SELECTED" value="InstagramTitleBar" />
     <property name="android-custom-view/Users/admin/Downloads/InsGallery-master/picture_test/src/main/java/com/kuanquan/picture_test/widget/CoverContainer.java_SELECTED" value="CoverContainer" />
@@ -401,7 +348,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634439580574</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="选中的时间点动起来">
+      <created>1634463827557</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1634463827557</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -420,7 +374,8 @@
     <MESSAGE value="test" />
     <MESSAGE value="test 模型" />
     <MESSAGE value="调整UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="调整UI" />
+    <MESSAGE value="选中的时间点动起来" />
+    <option name="LAST_COMMIT_MESSAGE" value="选中的时间点动起来" />
   </component>
   <component name="WindowStateProjectService">
     <state x="245" y="162" key="#PSD" timestamp="1634010262042">
@@ -495,10 +450,10 @@
       <screen x="0" y="25" width="1440" height="802" />
     </state>
     <state width="699" height="536" key="SwitcherDM/0.25.1440.802@0.25.1440.802" timestamp="1634265532914" />
-    <state x="320" y="163" key="Vcs.Push.Dialog.v2" timestamp="1634439696413">
+    <state x="320" y="163" key="Vcs.Push.Dialog.v2" timestamp="1634463829019">
       <screen x="0" y="25" width="1440" height="802" />
     </state>
-    <state x="320" y="163" key="Vcs.Push.Dialog.v2/0.25.1440.802@0.25.1440.802" timestamp="1634439696413" />
+    <state x="320" y="163" key="Vcs.Push.Dialog.v2/0.25.1440.802@0.25.1440.802" timestamp="1634463829019" />
     <state x="421" y="181" width="756" height="518" key="find.popup" timestamp="1634287289835">
       <screen x="0" y="25" width="1440" height="802" />
     </state>
