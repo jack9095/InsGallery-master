@@ -54,7 +54,7 @@ public class InstagramMediaSingleVideoContainer extends FrameLayout implements P
     public InstagramMediaSingleVideoContainer(@NonNull Context context, LocalMedia media, boolean isAspectRatio) {
         super(context);
         mMedia = media;
-        init(context, media, isAspectRatio);
+        initView(context, media, isAspectRatio);
     }
 
     int count; // 开始播放到400毫秒就暂停
@@ -81,7 +81,7 @@ public class InstagramMediaSingleVideoContainer extends FrameLayout implements P
         }
     };
 
-    private void init(Context context, LocalMedia media, boolean isAspectRatio) {
+    private void initView(Context context, LocalMedia media, boolean isAspectRatio) {
         View rootView = inflate(context, R.layout.aaa_video, this);
         mTopContainer = rootView.findViewById(R.id.root_view);
         mVideoView = rootView.findViewById(R.id.video_view);
