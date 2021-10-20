@@ -1,5 +1,6 @@
 package com.kuanquan.picture_test;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;

@@ -1,5 +1,6 @@
 package com.kuanquan.test;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -27,6 +28,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mImageView = findViewById(R.id.image_view);
         EventBus.getDefault().register(this);
+        if (PermissionChecker
+                .checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) &&
+                PermissionChecker
+                        .checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        ) {
+
+        } else {
+            PermissionChecker.requestPermissions(
+                    this, new String[]{
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+            }, 0x01
+            );
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

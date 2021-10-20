@@ -13,6 +13,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
@@ -158,6 +160,11 @@ public class CoverContainer extends FrameLayout {
 
             setScrollHorizontalPosition(startClickX - ScreenUtils.dip2px(getContext(), 20) - mZoomView.getMeasuredWidth() / 2);
 
+            Animation animation = new ScaleAnimation(1.0f, 1.1f, 1.0f, 1.1f);
+//            animation.setDuration(1500);//动画时间
+            animation.setRepeatCount(0);//动画的反复次数
+            animation.setFillAfter(true);//设置为true，动画转化结束后被应用
+            mZoomView.startAnimation(animation);//開始动画
         } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
             dxMove = (int) (event.getX() - startedTrackingX);
             moveByX(dxMove);
@@ -179,6 +186,12 @@ public class CoverContainer extends FrameLayout {
                     moveByXX(dxMove);
                 }
             }, 100);
+
+            Animation animation = new ScaleAnimation(1.1f, 1.0f, 1.1f, 1.0f);
+//            animation.setDuration(1500);//动画时间
+            animation.setRepeatCount(0);//动画的反复次数
+            animation.setFillAfter(true);//设置为true，动画转化结束后被应用
+            mZoomView.startAnimation(animation);//開始动画
         }
         return true;
     }

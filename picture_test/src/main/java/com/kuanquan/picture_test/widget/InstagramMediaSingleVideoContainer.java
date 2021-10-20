@@ -134,7 +134,8 @@ public class InstagramMediaSingleVideoContainer extends FrameLayout implements P
                         needPause = false;
                     }
                     if (mThumbView.getVisibility() == VISIBLE && !autoPlay) {
-                        ObjectAnimator.ofFloat(mThumbView, "alpha", 1.0f, 0).setDuration(400).start();
+                        mThumbView.setVisibility(View.GONE);
+//                        ObjectAnimator.ofFloat(mThumbView, "alpha", 1.0f, 0).setDuration(400).start();
                     }
                     return true;
                 }
