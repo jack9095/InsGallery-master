@@ -31,13 +31,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="182c9e1a-233f-43fd-9e95-66e28ae27193" name="Default Changelist" comment="选中的时间点动起来">
-      <change afterPath="$PROJECT_DIR$/test/src/main/java/com/kuanquan/test/PermissionChecker.java" afterDir="false" />
+    <list default="true" id="182c9e1a-233f-43fd-9e95-66e28ae27193" name="Default Changelist" comment="优化代码">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/InstagramMediaProcessActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/InstagramMediaProcessActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/widget/CoverContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/widget/CoverContainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/widget/InstagramMediaSingleVideoContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/widget/InstagramMediaSingleVideoContainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/src/main/java/com/kuanquan/test/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/src/main/java/com/kuanquan/test/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/picture_library/src/main/java/com/luck/picture/lib/instagram/process/InstagramMediaProcessActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/picture_library/src/main/java/com/luck/picture/lib/instagram/process/InstagramMediaProcessActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +144,7 @@
       <recent name="$PROJECT_DIR$/picture_test/src/main/java/com/kuanquan/picture_test/config" />
     </key>
   </component>
-  <component name="RunManager" selected="Android App.test">
+  <component name="RunManager" selected="Android App.app">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -372,7 +369,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634625576567</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="优化代码">
+      <created>1634726195520</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1634726195520</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -392,7 +396,8 @@
     <MESSAGE value="test 模型" />
     <MESSAGE value="调整UI" />
     <MESSAGE value="选中的时间点动起来" />
-    <option name="LAST_COMMIT_MESSAGE" value="选中的时间点动起来" />
+    <MESSAGE value="优化代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化代码" />
   </component>
   <component name="WindowStateProjectService">
     <state x="245" y="162" key="#PSD" timestamp="1634010262042">
@@ -427,22 +432,22 @@
       <screen x="0" y="25" width="1440" height="802" />
     </state>
     <state x="356" y="128" key="Github.UntrackedFilesDialog/0.25.1440.802@0.25.1440.802" timestamp="1634198513537" />
-    <state width="1398" height="262" key="GridCell.Tab.0.bottom" timestamp="1634470567480">
+    <state width="1398" height="337" key="GridCell.Tab.0.bottom" timestamp="1634801320178">
       <screen x="0" y="25" width="1440" height="802" />
     </state>
-    <state width="1398" height="262" key="GridCell.Tab.0.bottom/0.25.1440.802@0.25.1440.802" timestamp="1634470567480" />
-    <state width="1398" height="262" key="GridCell.Tab.0.center" timestamp="1634470567479">
+    <state width="1398" height="337" key="GridCell.Tab.0.bottom/0.25.1440.802@0.25.1440.802" timestamp="1634801320178" />
+    <state width="1398" height="337" key="GridCell.Tab.0.center" timestamp="1634801320176">
       <screen x="0" y="25" width="1440" height="802" />
     </state>
-    <state width="1398" height="262" key="GridCell.Tab.0.center/0.25.1440.802@0.25.1440.802" timestamp="1634470567479" />
-    <state width="1398" height="262" key="GridCell.Tab.0.left" timestamp="1634470567478">
+    <state width="1398" height="337" key="GridCell.Tab.0.center/0.25.1440.802@0.25.1440.802" timestamp="1634801320176" />
+    <state width="1398" height="337" key="GridCell.Tab.0.left" timestamp="1634801320175">
       <screen x="0" y="25" width="1440" height="802" />
     </state>
-    <state width="1398" height="262" key="GridCell.Tab.0.left/0.25.1440.802@0.25.1440.802" timestamp="1634470567478" />
-    <state width="1398" height="262" key="GridCell.Tab.0.right" timestamp="1634470567479">
+    <state width="1398" height="337" key="GridCell.Tab.0.left/0.25.1440.802@0.25.1440.802" timestamp="1634801320175" />
+    <state width="1398" height="337" key="GridCell.Tab.0.right" timestamp="1634801320177">
       <screen x="0" y="25" width="1440" height="802" />
     </state>
-    <state width="1398" height="262" key="GridCell.Tab.0.right/0.25.1440.802@0.25.1440.802" timestamp="1634470567479" />
+    <state width="1398" height="337" key="GridCell.Tab.0.right/0.25.1440.802@0.25.1440.802" timestamp="1634801320177" />
     <state width="1398" height="262" key="GridCell.Tab.1.bottom" timestamp="1634470567481">
       <screen x="0" y="25" width="1440" height="802" />
     </state>
@@ -467,18 +472,18 @@
       <screen x="0" y="25" width="1440" height="802" />
     </state>
     <state width="699" height="536" key="SwitcherDM/0.25.1440.802@0.25.1440.802" timestamp="1634265532914" />
-    <state x="320" y="163" key="Vcs.Push.Dialog.v2" timestamp="1634625578899">
+    <state x="320" y="163" key="Vcs.Push.Dialog.v2" timestamp="1634726201749">
       <screen x="0" y="25" width="1440" height="802" />
     </state>
-    <state x="320" y="163" key="Vcs.Push.Dialog.v2/0.25.1440.802@0.25.1440.802" timestamp="1634625578899" />
+    <state x="320" y="163" key="Vcs.Push.Dialog.v2/0.25.1440.802@0.25.1440.802" timestamp="1634726201749" />
     <state x="421" y="181" width="756" height="518" key="find.popup" timestamp="1634287289835">
       <screen x="0" y="25" width="1440" height="802" />
     </state>
     <state x="421" y="181" width="756" height="518" key="find.popup/0.25.1440.802@0.25.1440.802" timestamp="1634287289835" />
-    <state x="385" y="151" width="670" height="676" key="search.everywhere.popup" timestamp="1634554310446">
+    <state x="385" y="151" width="670" height="676" key="search.everywhere.popup" timestamp="1634795911680">
       <screen x="0" y="25" width="1440" height="802" />
     </state>
-    <state x="385" y="151" width="670" height="676" key="search.everywhere.popup/0.25.1440.802@0.25.1440.802" timestamp="1634554310446" />
+    <state x="385" y="151" width="670" height="676" key="search.everywhere.popup/0.25.1440.802@0.25.1440.802" timestamp="1634795911680" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

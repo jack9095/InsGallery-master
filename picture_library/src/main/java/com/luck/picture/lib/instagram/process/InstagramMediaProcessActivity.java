@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -103,6 +104,11 @@ public class InstagramMediaProcessActivity extends PictureBaseActivity {
     protected void initWidgets() {
         if (mSelectMedia == null && getIntent() != null) {
             mSelectMedia = getIntent().getParcelableArrayListExtra(PictureConfig.EXTRA_SELECT_LIST);
+            String realPath = mSelectMedia.get(0).getRealPath();
+            Log.e("视频真实路径", realPath);
+            String path = mSelectMedia.get(0).getPath();
+            Log.e("视频路径", path);
+            Log.e("视频时长", mSelectMedia.get(0).getDuration() + "");
         }
 
         if (mSelectMedia == null || mSelectMedia.isEmpty()) {
